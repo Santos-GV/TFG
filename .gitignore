@@ -409,3 +409,10 @@ html/
 xml/
 
 # End of SandCastle
+
+### Instalador de Visual Studio
+
+Debug/
+Release/
+
+# End of Instalador de Visual Studio
