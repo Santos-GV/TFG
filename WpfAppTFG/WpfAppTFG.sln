@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppTFG", "WpfAppTFG\WpfA
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentation", "Documentation\Documentation.shfbproj", "{D00F2414-A619-41AF-AB2E-90B1D22431E1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{7C2A5B2C-17A7-4D18-88F8-1BF64F7A8A85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{D00F2414-A619-41AF-AB2E-90B1D22431E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D00F2414-A619-41AF-AB2E-90B1D22431E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D00F2414-A619-41AF-AB2E-90B1D22431E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C2A5B2C-17A7-4D18-88F8-1BF64F7A8A85}.Debug|Any CPU.ActiveCfg = Debug
+		{7C2A5B2C-17A7-4D18-88F8-1BF64F7A8A85}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
