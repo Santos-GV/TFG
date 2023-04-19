@@ -2,8 +2,65 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfAppTFG"
-             StartupUri="MainWindow.xaml">
+             StartupUri="View/Window/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <!--#region Color-->
+            <Color x:Key="primary-color">#c7d66d</Color>
+            <Color x:Key="secondary-color">#75b9be</Color>
+            <Color x:Key="success-color">#3af364</Color>
+            <Color x:Key="danger-color">#ff4654</Color>
+            <Color x:Key="warning-color">#ffd23f</Color>
+            <Color x:Key="info-color">#ffb20f</Color>
+            <Color x:Key="light-color">#f8f9fa</Color>
+            <Color x:Key="dark-color">#343a40</Color>
+            <Color x:Key="white-color">#ffffff</Color>
+
+            <SolidColorBrush x:Key="primary" Color="{StaticResource primary-color}"/>
+            <SolidColorBrush x:Key="secondary" Color="{StaticResource secondary-color}"/>
+            <SolidColorBrush x:Key="success" Color="{StaticResource success-color}"/>
+            <SolidColorBrush x:Key="danger" Color="{StaticResource danger-color}"/>
+            <SolidColorBrush x:Key="warning" Color="{StaticResource warning-color}"/>
+            <SolidColorBrush x:Key="info" Color="{StaticResource info-color}"/>
+            <SolidColorBrush x:Key="light" Color="{StaticResource light-color}"/>
+            <SolidColorBrush x:Key="dark" Color="{StaticResource dark-color}"/>
+            <SolidColorBrush x:Key="white" Color="{StaticResource white-color}"/>
+            <!--#endregion-->
+
+            <Style x:Key="mainWindow" TargetType="NavigationWindow">
+                <Setter Property="Background" Value="{StaticResource dark}"/>
+                <Setter Property="MinHeight" Value="350"/>
+                <Setter Property="MinWidth" Value="300"/>
+            </Style>
+
+            <Style x:Key="textBlock" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{DynamicResource dark}"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+
+            <Style x:Key="text" TargetType="TextBox">
+                <Setter Property="Background" Value="{StaticResource light}"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="160"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="psswd" TargetType="PasswordBox">
+                <Setter Property="Background" Value="{StaticResource light}"/>
+                <Setter Property="PasswordChar" Value="*"/>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="160"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource dark}"/>
+                <Setter Property="Foreground" Value="{StaticResource white}"/>
+                <Setter Property="Height" Value="24"/>
+                <Setter Property="Width" Value="70"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
