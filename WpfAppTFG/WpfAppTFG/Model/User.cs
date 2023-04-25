@@ -7,6 +7,9 @@ using System.Text;
 
 namespace WpfAppTFG.Model
 {
+    /// <summary>
+    /// Representa una cuenta de usuario
+    /// </summary>
     public class User
     {
         [BsonId]
@@ -45,7 +48,8 @@ namespace WpfAppTFG.Model
         }
 
         /// <summary>
-        /// Compara una contraseña en texto plano con su sal, con la contraseña real encriptada
+        /// Compara una contraseña en texto plano con su sal,
+        /// con la contraseña real encriptada
         /// </summary>
         /// <param name="input">contraseña en texto plano</param>
         /// <param name="sal">sal del usuario</param>
@@ -59,6 +63,8 @@ namespace WpfAppTFG.Model
 
         /// <summary>
         /// Crea una sal aleatoria
+        /// Los valores devuletos por este método son valores aleatorios
+        /// criptográficamente seguros y aleatorios.
         /// </summary>
         /// <returns>sal</returns>
         private string GenerarSal()

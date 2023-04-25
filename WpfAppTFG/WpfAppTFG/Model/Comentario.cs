@@ -3,6 +3,10 @@ using MongoDB.Bson;
 
 namespace WpfAppTFG.Model
 {
+    /// <summary>
+    /// Representa un comentario
+    /// Se encuentra dentro de los post, no tiene sentido por si mismo
+    /// </summary>
     public class Comentario
     {
         [BsonId]

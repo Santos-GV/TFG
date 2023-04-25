@@ -1,10 +1,12 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
-using System.Windows.Documents;
 
 namespace WpfAppTFG.Model
 {
+    /// <summary>
+    /// Representa un post
+    /// </summary>
     public class Post
     {
         [BsonId]

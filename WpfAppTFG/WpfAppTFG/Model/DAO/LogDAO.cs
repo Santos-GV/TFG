@@ -6,83 +6,84 @@ using WpfAppTFG.Model.Interfaces;
 namespace WpfAppTFG.Model.DAO
 {
     /// <summary>
-    /// Implementación de un DAO de <see cref="User"/>
+    /// Implementación de un DAO de <see cref="Log"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class UserDAO : IDAO<User>
+    public class LogDAO : IDAO<Log>
     {
         private readonly IMongoClient dbClient;
         private readonly IMongoDatabase db;
 
         /// <summary>
-        /// Construye un DAO para usuarios
+        /// Construye un DAO para logs
         /// </summary>
         /// <param name="connectionString"></param>
-        public UserDAO(string connectionString)
+        public LogDAO(string connectionString)
         {
             this.dbClient = new MongoClient(connectionString);
-            this.db = dbClient.GetDatabase("Usuarios");
+            this.db = dbClient.GetDatabase("Logs");
         }
 
         /// <summary>
-        /// Crea un usuario
+        /// Crea un log
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="log"></param>
         /// <returns></returns>
-        public async Task Create(User user)
+        public async Task Create(Log log)
         {
-            await GetCollection().InsertOneAsync(user);
+            await GetCollection().InsertOneAsync(log);
         }
 
         /// <summary>
-        /// Elimina un usuario
+        /// Elimina un log
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="log"></param>
         /// <returns></returns>
-        public async Task Delete(User user)
+        public async Task Delete(Log log)
         {
-            await GetCollection().DeleteOneAsync(x => x.Id == user.Id);
+            await GetCollection().DeleteOneAsync(x => x.Id == log.Id);
         }
 
         /// <summary>
-        /// Obtiene un usuario por su Id
+        /// Obtiene un log por su Id
         /// Devuelve null si no existe
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<User?> Read(int id)
+        public async Task<Log?> Read(int id)
         {
-            var user = await GetCollection().FindAsync(user => user.Id == id);
-            return await user.SingleOrDefaultAsync();
+            var log = await GetCollection().FindAsync(user => user.Id == id);
+            return await log.SingleOrDefaultAsync();
         }
 
         /// <summary>
-        /// Obtiene todos los usuarios
+        /// Obtiene todos los logs
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<User>> ReadAll()
+        public async Task<IEnumerable<Log>> ReadAll()
         {
             var usuarios = await GetCollection().FindAsync(x => true);
             return usuarios.ToEnumerable();
         }
 
         /// <summary>
-        /// Actuliza un usuario
+        /// Actuliza un log
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="log"></param>
         /// <returns></returns>
-        public async Task Update(User user)
+
+        public async Task Update(Log log)
         {
-            await GetCollection().ReplaceOneAsync(x => x.Id == user.Id, user);
+            await GetCollection().ReplaceOneAsync(x => x.Id == log.Id, log);
         }
 
         /// <summary>
-        /// Obtiene la colección de usuarios
+        /// Obtiene la colección de logs
         /// </summary>
         /// <returns></returns>
-        private IMongoCollection<User> GetCollection()
+        private IMongoCollection<Log> GetCollection()
         {
-            return db.GetCollection<User>("Usuarios");
+            return db.GetCollection<Log>("Logs");
         }
     }
 }

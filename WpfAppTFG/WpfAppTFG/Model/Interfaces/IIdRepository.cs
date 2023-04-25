@@ -4,17 +4,22 @@ using System.Threading.Tasks;
 namespace WpfAppTFG.Model.Interfaces
 {
     /// <summary>
-    /// Representación abstracta de un Repositorio genérico
+    /// Representación abstracta de un IdRepositorio genérico
     /// </summary>
+    /// <remarks>
+    /// Se diferencia en un Repository en que para poder crear un objeto del tipo del
+    /// Repository hay que dar el id del post
+    /// </remarks>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T>
+    public interface IIdRepository<T>
     {
         /// <summary>
         /// Crea un objeto del tipo del Repository
         /// </summary>
+        /// <param name="postId"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task Create(T entity);
+        Task Create(int postId, T entity);
 
         /// <summary>
         /// Obtiene un objeto del tipo del Repository

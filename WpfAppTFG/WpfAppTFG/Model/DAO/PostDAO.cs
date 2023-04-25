@@ -5,6 +5,10 @@ using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model.DAO
 {
+    /// <summary>
+    /// Implementación de un DAO de <see cref="Post"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class PostDAO : IDAO<Post>
     {
         private readonly IMongoClient dbClient;
