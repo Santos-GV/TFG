@@ -4,13 +4,14 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model
 {
     /// <summary>
     /// Representa una cuenta de usuario
     /// </summary>
-    public class User
+    public class User : IIdentifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -45,6 +46,15 @@ namespace WpfAppTFG.Model
             Sal = GenerarSal();
             Psswd = HashSHA256Base64(psswd, Sal);
             Rol = rol;
+        }
+
+        /// <summary>
+        /// Obtiene el Id del <see cref="User"/>
+        /// </summary>
+        /// <returns></returns>
+        public int GetId()
+        {
+            return this.Id;
         }
 
         /// <summary>

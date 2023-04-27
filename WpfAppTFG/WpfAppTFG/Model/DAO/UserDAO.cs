@@ -9,80 +9,19 @@ namespace WpfAppTFG.Model.DAO
     /// Implementación de un DAO de <see cref="User"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class UserDAO : IDAO<User>
+    public class UserDAO : DAO<User>
     {
-        private readonly IMongoClient dbClient;
-        private readonly IMongoDatabase db;
-
         /// <summary>
         /// Construye un DAO para usuarios
         /// </summary>
         /// <param name="connectionString"></param>
-        public UserDAO(string connectionString)
+        public UserDAO(string connectionString) : base(connectionString)
         {
-            this.dbClient = new MongoClient(connectionString);
-            this.db = dbClient.GetDatabase("Usuarios");
         }
 
-        /// <summary>
-        /// Crea un usuario
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public async Task Create(User user)
+        protected override string GetCollectionName()
         {
-            await GetCollection().InsertOneAsync(user);
-        }
-
-        /// <summary>
-        /// Elimina un usuario
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public async Task Delete(User user)
-        {
-            await GetCollection().DeleteOneAsync(x => x.Id == user.Id);
-        }
-
-        /// <summary>
-        /// Obtiene un usuario por su Id
-        /// Devuelve null si no existe
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<User?> Read(int id)
-        {
-            var user = await GetCollection().FindAsync(user => user.Id == id);
-            return await user.SingleOrDefaultAsync();
-        }
-
-        /// <summary>
-        /// Obtiene todos los usuarios
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IEnumerable<User>> ReadAll()
-        {
-            var usuarios = await GetCollection().FindAsync(x => true);
-            return usuarios.ToEnumerable();
-        }
-
-        /// <summary>
-        /// Actuliza un usuario
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public async Task Update(User user)
-        {
-            await GetCollection().ReplaceOneAsync(x => x.Id == user.Id, user);
-        }
-
-        /// <summary>
-        /// Obtiene la colección de usuarios
-        /// </summary>
-        /// <returns></returns>
-        private IMongoCollection<User> GetCollection()
-        {
-            return db.GetCollection<User>("Usuarios");
+            return "Usuarios";
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model
 {
     /// <summary>
     /// Representa un log
     /// </summary>
-    public class Log
+    public class Log : IIdentifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -20,6 +21,15 @@ namespace WpfAppTFG.Model
         {
             IdUsuario = idUsuario;
             Accion = accion;
+        }
+
+        /// <summary>
+        /// Obtiene el Id del <see cref="Post"/>
+        /// </summary>
+        /// <returns></returns>
+        public int GetId()
+        {
+            return this.Id;
         }
     }
 }

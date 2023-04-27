@@ -15,6 +15,7 @@ namespace WpfAppTFG.Model.Interfaces
         /// <param name="entity"></param>
         /// <returns></returns>
         Task Create(T entity);
+
         /// <summary>
         /// Obtiene un objeto del tipo del DAO
         /// Puede ser nulo, si no existe
@@ -22,17 +23,29 @@ namespace WpfAppTFG.Model.Interfaces
         /// <param name="id"></param>
         /// <returns></returns>
         Task<T?> Read(int id);
+
         /// <summary>
         /// Obtiene todos los objetos del tipo del DAO
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<T>> ReadAll();
+
+        /// <summary>
+        /// Recupera todos los <see cref="T"/> de forma paginada.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>.
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <param name="pageNumber">El número de página a recuperar.</param>
+        /// <returns></returns>
+        public Task<IEnumerable<T>> ReadAllPaged(int pageSize, int pageNumber);
+
         /// <summary>
         /// Actualiza un objeto del tipo del DAO
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         Task Update(T entity);
+
         /// <summary>
         /// Elimina un objeto del tipo del DAO
         /// </summary>

@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model
 {
@@ -7,7 +8,7 @@ namespace WpfAppTFG.Model
     /// Representa un comentario
     /// Se encuentra dentro de los post, no tiene sentido por si mismo
     /// </summary>
-    public class Comentario
+    public class Comentario : IIdentifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -21,6 +22,15 @@ namespace WpfAppTFG.Model
         {
             IdUsuario = idUsuario;
             Contenido = contenido;
+        }
+
+        /// <summary>
+        /// Obtiene el Id del <see cref="Post"/>
+        /// </summary>
+        /// <returns></returns>
+        public int GetId()
+        {
+            return this.Id;
         }
     }
 }

@@ -40,6 +40,16 @@ namespace WpfAppTFG.Model.Respository
         public async Task Delete(User user)
         {
             await userDAO.Delete(user);
+            var posts =  await postDAO.ReadAll();
+            posts
+                .Where(post => post.IdUsuario == user.Id)
+                .ToList()
+                .ForEach(post => postDAO.Delete(post));
+            var comentarios = await comentarioDAO.ReadAll();
+            comentarios
+                .Where(comentario => comentario.IdUsuario == user.Id)
+                .ToList()
+                .ForEach(comentario => comentarioDAO.Delete(comentario));
         }
 
         /// <summary>
