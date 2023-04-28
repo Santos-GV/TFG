@@ -15,7 +15,7 @@ namespace WpfAppTFG.Model.DAO
         /// Construye un DAO para usuarios
         /// </summary>
         /// <param name="connectionString"></param>
-        public UserDAO(string connectionString) : base(connectionString)
+        public UserDAO() : base()
         {
         }
 

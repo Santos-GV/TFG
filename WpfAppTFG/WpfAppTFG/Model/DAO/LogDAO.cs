@@ -15,7 +15,7 @@ namespace WpfAppTFG.Model.DAO
         /// Construye un DAO para logs
         /// </summary>
         /// <param name="connectionString"></param>
-        public LogDAO(string connectionString) : base(connectionString)
+        public LogDAO() : base()
         {
         }
 

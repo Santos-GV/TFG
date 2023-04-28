@@ -15,7 +15,7 @@ namespace WpfAppTFG.Model.DAO
         /// Construye un DAO para posts
         /// </summary>
         /// <param name="connectionString"></param>
-        public PostDAO(string connectionString) : base(connectionString)
+        public PostDAO() : base()
         {
         }
 

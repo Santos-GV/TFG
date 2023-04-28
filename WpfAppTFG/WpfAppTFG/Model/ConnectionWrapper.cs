@@ -17,12 +17,12 @@
         {
         }
 
-        public static ConnectionWrapper GetInstance(string connectionString)
+        public static ConnectionWrapper GetInstance()
         {
             // Si la conexión no existe (es null) se crea la conexión
             if (instance.Value.client == null)
             {
-                instance.Value.client = new MongoClient(connectionString);
+                instance.Value.client = new MongoClient("TODO: connectionString");
                 instance.Value.database = instance.Value.client.GetDatabase("ForoSaber");
             }
             return instance.Value;

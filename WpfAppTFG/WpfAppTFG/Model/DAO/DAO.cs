@@ -17,9 +17,9 @@ namespace WpfAppTFG.Model.DAO
         /// Construye un DAO de <see cref="T"/>
         /// </summary>
         /// <param name="connectionString"></param>
-        public DAO(ConnectionWrapper connection)
+        public DAO()
         {
-            this.connection = connection;
+            this.connection = ConnectionWrapper.GetInstance();
         }
 
         /// <summary>
