@@ -35,21 +35,25 @@ namespace WpfAppTFG.Model.Respository
         /// <summary>
         /// Elimina un usuario
         /// </summary>
+        /// <remarks>Tambien elimina todos sus comentarios y post</remarks>
         /// <param name="usuario"></param>
         /// <returns></returns>
         public async Task Delete(User user)
         {
             await userDAO.Delete(user);
             var posts =  await postDAO.ReadAll();
-            posts
-                .Where(post => post.IdUsuario == user.Id)
-                .ToList()
-                .ForEach(post => postDAO.Delete(post));
             var comentarios = await comentarioDAO.ReadAll();
-            comentarios
+            // Elimina los post y comentarios del usuario de forma concurrente
+            var postsToDelete = posts
+                .AsParallel()
+                .Where(post => post.IdUsuario == user.Id)
+                .Select(post => postDAO.Delete(post));
+            var comentariosToDelete = comentarios
+                .AsParallel()
                 .Where(comentario => comentario.IdUsuario == user.Id)
-                .ToList()
-                .ForEach(comentario => comentarioDAO.Delete(comentario));
+                .Select(comentario => comentarioDAO.Delete(comentario));
+            // Espera asíncrona y no bloqueantemente a que se eliminen todos los datos
+            await Task.WhenAll(postsToDelete.Concat(comentariosToDelete));
         }
 
         /// <summary>
@@ -59,9 +63,8 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<IEnumerable<Comentario>> GetAllComentario(int userId)
         {
-            var usuario = await userDAO.Read(userId);
             var comentarios = await comentarioDAO.ReadAll();
-            return comentarios.Where(x => x.IdUsuario == usuario?.Id);
+            return comentarios.Where(x => x.IdUsuario == userId);
         }
 
         /// <summary>
@@ -71,9 +74,8 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<IEnumerable<Post>> GetAllPost(int userId)
         {
-            var usuario = await userDAO.Read(userId);
             var posts = await postDAO.ReadAll();
-            return posts.Where(x => x.IdUsuario == usuario?.Id);
+            return posts.Where(x => x.IdUsuario == userId);
         }
 
         /// <summary>
