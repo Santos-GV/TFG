@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WpfAppTFG.Model.Interfaces
 {
@@ -8,45 +7,18 @@ namespace WpfAppTFG.Model.Interfaces
     /// </summary>
     /// <remarks>
     /// Se diferencia en un Repository en que para poder crear un objeto del tipo del
-    /// Repository hay que dar el id del post
+    /// Repository hay que dar el id de otra entidad
     /// </remarks>
     /// <typeparam name="T"></typeparam>
-    public interface IIdRepository<T>
+    public interface IIdRepository<T> : IBaseRepository<T>
+    where T : IIdentifiable
     {
         /// <summary>
-        /// Crea un objeto del tipo del Repository
-        /// </summary>
-        /// <param name="postId"></param>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        Task Create(int postId, T entity);
-
-        /// <summary>
-        /// Obtiene un objeto del tipo del Repository
-        /// Puede ser nulo, si no existe
+        /// Crea un <see cref="T"/>
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
-        Task<T?> Read(int id);
-
-        /// <summary>
-        /// Obtiene todos los objetos del tipo del Repository
-        /// </summary>
-        /// <returns></returns>
-        Task<IEnumerable<T>> ReadAll();
-
-        /// <summary>
-        /// Actualiza un objeto del tipo del Repository
-        /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task Update(T entity);
-
-        /// <summary>
-        /// Elimina un objeto del tipo del Repository
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        Task Delete(T entity);
+        Task Create(int id, T entity);
     }
 }

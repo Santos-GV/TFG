@@ -19,7 +19,7 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Crea un comentario
+        /// Crea un <see cref="Comentario"/>
         /// </summary>
         /// <param name="postId"></param>
         /// <param name="comentario"></param>
@@ -31,7 +31,7 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Elimina un comentario
+        /// Elimina un <see cref="Comentario"/>
         /// </summary>
         /// <param name="comentario"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Obtiene todos los comentarios
+        /// Obtiene todos los <see cref="Comentario"/>
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<Comentario>> ReadAll()
@@ -56,9 +56,9 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Obtiene un comentario por su id
-        /// Puede ser nulo, si no existe
+        /// Obtiene un <see cref="Comentario"/> por su id
         /// </summary>
+        /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<Comentario?> Read(int id)

@@ -14,16 +14,18 @@ namespace WpfAppTFG.Model.Respository
         private readonly IDAO<User> userDAO;
         private readonly IDAO<Comentario> comentarioDAO;
         private readonly IDAO<Post> postDAO;
+        private readonly IDAO<Log> logDAO;
 
-        public UserRepository(IDAO<User> userDAO, IDAO<Comentario> comentarioDAO, IDAO<Post> postDAO)
+        public UserRepository(IDAO<User> userDAO, IDAO<Comentario> comentarioDAO, IDAO<Post> postDAO, IDAO<Log> logDAO)
         {
             this.userDAO = userDAO;
             this.comentarioDAO = comentarioDAO;
             this.postDAO = postDAO;
+            this.logDAO = logDAO;
         }
 
         /// <summary>
-        /// Crea un objeto un usuario
+        /// Crea un objeto un <see cref="User"/>
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>
@@ -33,9 +35,9 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Elimina un usuario
+        /// Elimina un <see cref="User"/>
         /// </summary>
-        /// <remarks>Tambien elimina todos sus comentarios y post</remarks>
+        /// <remarks>Tambien elimina todos sus <see cref="Comentario"/> y <see cref="Post"/></remarks>
         /// <param name="usuario"></param>
         /// <returns></returns>
         public async Task Delete(User user)
@@ -57,31 +59,45 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Obtiene todos los comentarios de un usuario
+        /// Obtiene todos los comentarios de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         public async Task<IEnumerable<Comentario>> GetAllComentario(int userId)
         {
             var comentarios = await comentarioDAO.ReadAll();
-            return comentarios.Where(x => x.IdUsuario == userId);
+            var comentariosUsuario = comentarios.AsParallel().Where(x => x.IdUsuario == userId);
+            return comentariosUsuario;
         }
 
         /// <summary>
-        /// Obtiene todos los posts de un usuario
+        /// Obtiene todos los logs de un <see cref="User"/>
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Log>> GetAllLogs(int userId)
+        {
+            var logs = await logDAO.ReadAll();
+            var logsUsuario = logs.AsParallel().Where(x => x.IdUsuario == userId);
+            return logsUsuario;
+        }
+
+        /// <summary>
+        /// Obtiene todos los posts de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         public async Task<IEnumerable<Post>> GetAllPost(int userId)
         {
             var posts = await postDAO.ReadAll();
-            return posts.Where(x => x.IdUsuario == userId);
+            var postUsuario = posts.AsParallel().Where(x => x.IdUsuario == userId);
+            return postUsuario;
         }
 
         /// <summary>
-        /// Obtiene un usuario
-        /// Puede ser nulo, si no existe
+        /// Obtiene un <see cref="User"/>
         /// </summary>
+        /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<User?> Read(int id)
@@ -91,7 +107,7 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Obtiene todos los usuarios
+        /// Obtiene todos los <see cref="User"/>
         /// </summary>
         /// <returns></returns>
         public async Task<IEnumerable<User>> ReadAll()
@@ -101,7 +117,7 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Actualiza un usuario
+        /// Actualiza un <see cref="User"/>
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>

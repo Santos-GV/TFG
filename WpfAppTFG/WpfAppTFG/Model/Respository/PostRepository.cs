@@ -7,7 +7,7 @@ namespace WpfAppTFG.Model.Respository
     /// <summary>
     /// Implementación de un Repositorio de <see cref="Post"/>
     /// </summary>
-    public class PostRepository : IPostRepository
+    public class PostRepository : IRepository<Post>
     {
         private IDAO<Post> postDAO;
 
@@ -27,32 +27,20 @@ namespace WpfAppTFG.Model.Respository
         }
 
         /// <summary>
-        /// Obtiene todos los posts
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IEnumerable<Post>> GetAllPost()
-        {
-            var posts = await postDAO.ReadAll();
-            return posts;
-        }
-
-        /// <summary>
         /// Obtiene un post por su id
         /// Puede ser nulo, si no existe
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Post?> GetPost(int id)
-        {
-            var post = await postDAO.Read(id);
-            return post;
-        }
-
         public Task<Post?> Read(int id)
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Obtiene todos los <see cref="Post"/>
+        /// </summary>
+        /// <returns></returns>
         public Task<IEnumerable<Post>> ReadAll()
         {
             throw new System.NotImplementedException();

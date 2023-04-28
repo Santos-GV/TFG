@@ -38,8 +38,8 @@ namespace WpfAppTFG.Model.Respository
 
         /// <summary>
         /// Obtiene un log
-        /// Puede ser nulo, si no existe
         /// </summary>
+        /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<Log?> Read(int id)

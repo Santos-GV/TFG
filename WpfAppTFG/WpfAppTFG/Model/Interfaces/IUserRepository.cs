@@ -13,17 +13,24 @@ namespace WpfAppTFG.Model.Interfaces
     public interface IUserRepository : IRepository<User>
     {
         /// <summary>
-        /// Obtiene todos los posts de un usuario
+        /// Obtiene todos los posts de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<IEnumerable<Post>> GetAllPost(int userId);
 
         /// <summary>
-        /// Obtiene todos los comentarios de un usuario
+        /// Obtiene todos los comentarios de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<IEnumerable<Comentario>> GetAllComentario(int userId);
+
+        /// <summary>
+        /// Obtiene todos los logs de un <see cref="User"/>
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Log>> GetAllLogs(int userId);
     }
 }
