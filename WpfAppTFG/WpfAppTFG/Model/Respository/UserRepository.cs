@@ -102,7 +102,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<User?> Read(int id)
         {
-            User? usuario = await userDAO.Read(id);
+            var usuario = await userDAO.Read(id);
             return usuario;
         }
 
@@ -112,7 +112,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<IEnumerable<User>> ReadAll()
         {
-            IEnumerable<User> usuarios = await userDAO.ReadAll();
+            var usuarios = await userDAO.ReadAll();
             return usuarios;
         }
 

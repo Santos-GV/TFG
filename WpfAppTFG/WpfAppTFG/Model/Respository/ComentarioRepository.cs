@@ -39,6 +39,7 @@ namespace WpfAppTFG.Model.Respository
         {
             var posts = await postDAO.ReadAll();
             var post = posts
+                .AsParallel()
                 .FirstOrDefault(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
             post?.Comentarios.Remove(comentario);
@@ -51,7 +52,7 @@ namespace WpfAppTFG.Model.Respository
         public async Task<IEnumerable<Comentario>> ReadAll()
         {
             var posts = await postDAO.ReadAll();
-            var comentarios = posts.SelectMany(post => post.Comentarios);
+            var comentarios = posts.AsParallel().SelectMany(post => post.Comentarios);
             return comentarios;
         }
 
@@ -65,13 +66,14 @@ namespace WpfAppTFG.Model.Respository
         {
             var posts = await postDAO.ReadAll();
             var comentario = posts
+                .AsParallel()
                 .SelectMany(post => post.Comentarios)
                 .FirstOrDefault(comentario => comentario.Id == id);
             return comentario;
         }
 
         /// <summary>
-        /// Actualiza un comentario
+        /// Actualiza un <see cref="Comentario"/>
         /// </summary>
         /// <param name="comentario"></param>
         /// <returns></returns>
@@ -79,11 +81,14 @@ namespace WpfAppTFG.Model.Respository
         {
             var posts = await postDAO.ReadAll();
             var post = posts
+                .AsParallel()
                 .FirstOrDefault(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
             var oldComentario = post?.Comentarios
+                .AsParallel()
                 .FirstOrDefault(_comentario => _comentario.Id == comentario.Id);
             if (oldComentario == null) return; // Comprueba que exista el comentario
+            // TODO: Check code implementation
             oldComentario = comentario;
         }
     }

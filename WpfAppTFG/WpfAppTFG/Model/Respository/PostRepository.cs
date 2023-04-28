@@ -16,39 +16,56 @@ namespace WpfAppTFG.Model.Respository
             this.postDAO = postDAO;
         }
 
-        public Task Create(Post entity)
+        /// <summary>
+        /// Crea un <see cref="Post"/>
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
+        public async Task Create(Post post)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Task Delete(Post entity)
-        {
-            throw new System.NotImplementedException();
+            await postDAO.Create(post);
         }
 
         /// <summary>
-        /// Obtiene un post por su id
-        /// Puede ser nulo, si no existe
+        /// Elimina un <see cref="Post"/>
         /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
+        public async Task Delete(Post post)
+        {
+            await postDAO.Create(post);
+        }
+
+        /// <summary>
+        /// Obtiene un <see cref="Post"/> por su id
+        /// </summary>
+        /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Task<Post?> Read(int id)
+        public async Task<Post?> Read(int id)
         {
-            throw new System.NotImplementedException();
+            var post = await postDAO.Read(id);
+            return post;
         }
 
         /// <summary>
         /// Obtiene todos los <see cref="Post"/>
         /// </summary>
         /// <returns></returns>
-        public Task<IEnumerable<Post>> ReadAll()
+        public async Task<IEnumerable<Post>> ReadAll()
         {
-            throw new System.NotImplementedException();
+            var posts = await postDAO.ReadAll();
+            return posts;
         }
 
-        public Task Update(Post entity)
+        /// <summary>
+        /// Actualiza un <see cref="Post"/>
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns></returns>
+        public async Task Update(Post post)
         {
-            throw new System.NotImplementedException();
+            await postDAO.Update(post);
         }
     }
 }
