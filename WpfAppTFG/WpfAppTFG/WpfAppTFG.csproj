@@ -33,7 +33,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ArmDot.Engine.MSBuildTasks" Version="2023.8.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
   </ItemGroup>
-
+	
+  <Target Name="Protect" AfterTargets="AfterCompile" BeforeTargets="BeforePublish"
+    Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<ItemGroup>
+	    <Assemblies Include="$(ProjectDir)$(IntermediateOutputPath)$(TargetFileName)" />
+	</ItemGroup>
+	<ArmDot.Engine.MSBuildTasks.ObfuscateTask
+	  Inputs="@(Assemblies)"
+	  ReferencePaths="@(_ResolveAssemblyReferenceResolvedFiles->'%(RootDir)%(Directory)')"
+	  SkipAlreadyObfuscatedAssemblies="true"/>
+  </Target>
+	
 </Project>
