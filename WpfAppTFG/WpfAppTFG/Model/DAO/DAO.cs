@@ -19,7 +19,7 @@ namespace WpfAppTFG.Model.DAO
         /// <param name="connectionString"></param>
         public DAO()
         {
-            this.connection = ConnectionWrapper.GetInstance();
+            this.connection = ConnectionWrapper.Instance;
         }
 
         /// <summary>
