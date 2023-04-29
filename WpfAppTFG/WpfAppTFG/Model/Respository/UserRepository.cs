@@ -8,7 +8,7 @@ namespace WpfAppTFG.Model.Respository
 {
     /// <summary>
     /// Implementación de un Repositorio de <see cref="User"/>
-    /// </summary>
+    /// </summary>z
     public class UserRepository : IUserRepository
     {
         private readonly IDAO<User> userDAO;
@@ -43,19 +43,24 @@ namespace WpfAppTFG.Model.Respository
         public async Task Delete(User user)
         {
             await userDAO.Delete(user);
-            var posts =  await postDAO.ReadAll();
-            var comentarios = await comentarioDAO.ReadAll();
+            // Obtiene los posts y comentarios del usuario de forma concurrente
+            var postsTask =  postDAO.ReadAll();
+            var comentariosTask = comentarioDAO.ReadAll();
+            await Task.WhenAll(postsTask, comentariosTask);
+            var posts = await postsTask;
+            var comentarios = await comentariosTask;
             // Elimina los post y comentarios del usuario de forma concurrente
-            var postsToDelete = posts
+            var tasks = new List<Task>();
+            tasks.AddRange(posts
                 .AsParallel()
                 .Where(post => post.IdUsuario == user.Id)
-                .Select(post => postDAO.Delete(post));
-            var comentariosToDelete = comentarios
+                .Select(post => postDAO.Delete(post)));
+            tasks.AddRange(comentarios
                 .AsParallel()
                 .Where(comentario => comentario.IdUsuario == user.Id)
-                .Select(comentario => comentarioDAO.Delete(comentario));
+                .Select(comentario => comentarioDAO.Delete(comentario)));
             // Espera asíncrona y no bloqueantemente a que se eliminen todos los datos
-            await Task.WhenAll(postsToDelete.Concat(comentariosToDelete));
+            await Task.WhenAll(tasks);
         }
 
         /// <summary>
