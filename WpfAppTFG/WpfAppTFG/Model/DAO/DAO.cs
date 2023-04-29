@@ -84,6 +84,32 @@ namespace WpfAppTFG.Model.DAO
             return retrievedData;
         }
 
+        /// <summary>
+        /// Recupera todos los <see cref="T"/> de forma paginada.
+        /// Los datos solo se cargan cuando hacen falta.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>.
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <returns>Un <see cref="IEnumerable"/> de paginas con un <see cref="IEnumerable"/> de los elementos de esa página</returns>
+        public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
+        {
+            var retrievedData = await GetCollection()
+                .Find(_ => true)
+                .ToListAsync();
+            var pagesCount = (int)Math.Ceiling((double)retrievedData.Count / pageSize);
+            var pages = Enumerable.Range(0, pagesCount)
+                .Select(i =>
+                {
+                    int startIndex = i * pageSize;
+                    // En caso de tener menos elementos que el tamaño de la pagina
+                    // devulven los elementos que queden
+                    int endIndex = Math.Min(startIndex + pageSize, retrievedData.Count);
+                    var items = retrievedData.GetRange(startIndex, endIndex - startIndex);
+                    return new Lazy<IEnumerable<T>>(() => items);
+                });
+            return pages;
+        }
+
 
         /// <summary>
         /// Actuliza un <see cref="T"/>

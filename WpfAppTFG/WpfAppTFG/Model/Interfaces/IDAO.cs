@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WpfAppTFG.Model.Interfaces
@@ -38,6 +39,15 @@ namespace WpfAppTFG.Model.Interfaces
         /// <param name="pageNumber">El número de página a recuperar.</param>
         /// <returns></returns>
         public Task<IEnumerable<T>> ReadAllPaged(int pageSize, int pageNumber);
+
+        /// <summary>
+        /// Recupera todos los <see cref="T"/> de forma paginada.
+        /// Los datos solo se cargan cuando hacen falta.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>.
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <returns></returns>
+        public Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize);
 
         /// <summary>
         /// Actualiza un objeto del tipo del DAO
