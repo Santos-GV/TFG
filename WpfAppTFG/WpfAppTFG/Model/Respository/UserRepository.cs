@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WpfAppTFG.Model.Exception;
 using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model.Respository
@@ -28,9 +29,18 @@ namespace WpfAppTFG.Model.Respository
         /// Crea un objeto un <see cref="User"/>
         /// </summary>
         /// <param name="usuario"></param>
+        /// <exception cref="UserAlreadyExists"/>
         /// <returns></returns>
         public async Task Create(User user)
         {
+            var usuarios = await userDAO.ReadAll();
+            var otherUser = usuarios
+                .Where(otherUser => otherUser.Name == user.Name)
+                .FirstOrDefault();
+            if (otherUser == null)
+            {
+                throw new UserAlreadyExists($"El nombre {user.Name} ya está en uso");
+            }
             await userDAO.Create(user);
         }
 

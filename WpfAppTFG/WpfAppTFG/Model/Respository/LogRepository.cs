@@ -44,7 +44,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<Log?> Read(int id)
         {
-            Log? log = await LogDAO.Read(id);
+            var log = await LogDAO.Read(id);
             return log;
         }
 
@@ -54,7 +54,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<IEnumerable<Log>> ReadAll()
         {
-            IEnumerable<Log> logs = await LogDAO.ReadAll();
+            var logs = await LogDAO.ReadAll();
             return logs;
         }
 

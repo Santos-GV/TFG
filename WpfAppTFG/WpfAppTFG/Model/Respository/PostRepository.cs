@@ -9,7 +9,7 @@ namespace WpfAppTFG.Model.Respository
     /// </summary>
     public class PostRepository : IRepository<Post>
     {
-        private IDAO<Post> postDAO;
+        private readonly IDAO<Post> postDAO;
 
         public PostRepository(IDAO<Post> postDAO)
         {
