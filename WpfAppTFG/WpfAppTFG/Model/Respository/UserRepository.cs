@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WpfAppTFG.Model.DAO;
 using WpfAppTFG.Model.Exception;
 using WpfAppTFG.Model.Interfaces;
 
@@ -17,12 +18,12 @@ namespace WpfAppTFG.Model.Respository
         private readonly IDAO<Post> postDAO;
         private readonly IDAO<Log> logDAO;
 
-        public UserRepository(IDAO<User> userDAO, IDAO<Comentario> comentarioDAO, IDAO<Post> postDAO, IDAO<Log> logDAO)
+        public UserRepository(IDAO<Comentario> comentarioDAO)
         {
-            this.userDAO = userDAO;
+            this.userDAO = new UserDAO();
             this.comentarioDAO = comentarioDAO;
-            this.postDAO = postDAO;
-            this.logDAO = logDAO;
+            this.postDAO = new PostDAO();
+            this.logDAO = new LogDAO();
         }
 
         /// <summary>

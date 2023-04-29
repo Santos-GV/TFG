@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using WpfAppTFG.Model.DAO;
 using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model.Respository
@@ -11,9 +12,9 @@ namespace WpfAppTFG.Model.Respository
     {
         private readonly IDAO<Post> postDAO;
 
-        public PostRepository(IDAO<Post> postDAO)
+        public PostRepository()
         {
-            this.postDAO = postDAO;
+            this.postDAO = new PostDAO();
         }
 
         /// <summary>

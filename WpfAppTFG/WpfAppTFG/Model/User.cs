@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json.Serialization;
 using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model
@@ -24,28 +25,20 @@ namespace WpfAppTFG.Model
         [BsonElement("sal")]
         public string Sal { get; private set; }
         [BsonElement("rol")]
-        public string Rol { get; set; }
+        public Rol Rol { get; set; }
         [BsonElement("favoritos")]
         public List<Post> Favoritos { get; set; }
         [BsonElement("pendientes")]
         public List<Post> Pendientes { get; set; }
 
-        public User(string name, string psswd, string sal, string rol)
-        {
-            Name = name;
-            Psswd = HashSHA256Base64(psswd, sal);
-            Sal = sal;
-            Rol = rol;
-            Favoritos = new List<Post>();
-            Pendientes = new List<Post>();
-        }
-
-        public User(string name, string psswd, string rol)
+        public User(string name, string psswd, Rol rol)
         {
             Name = name;
             Sal = GenerarSal();
             Psswd = HashSHA256Base64(psswd, Sal);
             Rol = rol;
+            Favoritos = new List<Post>();
+            Pendientes = new List<Post>();
         }
 
         /// <summary>
