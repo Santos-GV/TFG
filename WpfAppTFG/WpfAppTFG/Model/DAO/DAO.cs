@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,17 +51,17 @@ namespace WpfAppTFG.Model.DAO
         /// <returns></returns>
         public async Task<T?> Read(int id)
         {
-            var entity = await Find(entity => entity.GetId() == id);
-            return entity.FirstOrDefault();
+            var entity = await Find(entity => entity.GetId() == id).FirstOrDefaultAsync();
+            return entity;
         }
 
         /// <summary>
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> ReadAll()
+        public async Task<IMongoQueryable<T>> ReadAll()
         {
-            var entities = await Find(_ => true);
+            var entities = Find(_ => true);
             return entities;
         }
 
@@ -93,18 +94,19 @@ namespace WpfAppTFG.Model.DAO
         /// <returns>Un <see cref="IEnumerable"/> de paginas con un <see cref="IEnumerable"/> de los elementos de esa página</returns>
         public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
         {
-            var retrievedData = await GetCollection()
-                .Find(_ => true)
-                .ToListAsync();
-            var pagesCount = (int)Math.Ceiling((double)retrievedData.Count / pageSize);
-            var pages = Enumerable.Range(0, pagesCount)
+            var total = (int)await GetCollection().CountDocumentsAsync(_ => true);
+            var numPages = (int)Math.Ceiling((double)total / pageSize);
+            var pages = Enumerable.Range(0, numPages)
                 .Select(i =>
                 {
-                    int startIndex = i * pageSize;
+                    var startIndex = i * pageSize;
                     // En caso de tener menos elementos que el tamaño de la pagina
                     // devulven los elementos que queden
-                    int endIndex = Math.Min(startIndex + pageSize, retrievedData.Count);
-                    var items = retrievedData.GetRange(startIndex, endIndex - startIndex);
+                    var endIndex = Math.Min(startIndex + pageSize, total);
+                    var items = GetCollection().Find(_ => true)
+                        .Skip(startIndex)
+                        .Limit(endIndex - startIndex)
+                        .ToEnumerable();
                     return new Lazy<IEnumerable<T>>(() => items);
                 });
             return pages;
@@ -126,10 +128,10 @@ namespace WpfAppTFG.Model.DAO
         /// </summary>
         /// <param name="condition"></param>
         /// <returns></returns>
-        private async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> condition)
+        private IMongoQueryable<T> Find(Expression<Func<T, bool>> condition)
         {
-            var entities = await GetCollection().FindAsync(condition);
-            return entities.ToEnumerable();
+            var entities = GetCollection().AsQueryable().Where(condition);
+            return entities;
         }
 
 

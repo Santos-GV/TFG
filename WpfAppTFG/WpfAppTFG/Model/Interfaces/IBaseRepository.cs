@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WpfAppTFG.Model.Interfaces
@@ -25,7 +26,7 @@ namespace WpfAppTFG.Model.Interfaces
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<T>> ReadAll();
+        Task<IQueryable<T>> ReadAll();
 
         /// <summary>
         /// Actualiza un objeto <see cref="T"/>

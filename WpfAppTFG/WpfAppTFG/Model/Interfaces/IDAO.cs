@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WpfAppTFG.Model.Interfaces
@@ -29,7 +30,7 @@ namespace WpfAppTFG.Model.Interfaces
         /// Obtiene todos los objetos del tipo del DAO
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<T>> ReadAll();
+        Task<IQueryable<T>> ReadAll();
 
         /// <summary>
         /// Recupera todos los <see cref="T"/> de forma paginada.
