@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver.Linq;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WpfAppTFG.Model.DAO;
@@ -38,9 +37,8 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task Delete(Comentario comentario)
         {
-            var posts = await postDAO.ReadAll();
+            var posts = postDAO.ReadAll();
             var post = posts
-                .AsParallel()
                 .FirstOrDefault(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
             post?.Comentarios.Remove(comentario);
@@ -50,10 +48,10 @@ namespace WpfAppTFG.Model.Respository
         /// Obtiene todos los <see cref="Comentario"/>
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Comentario>> ReadAll()
+        public IMongoQueryable<Comentario> ReadAll()
         {
-            var posts = await postDAO.ReadAll();
-            var comentarios = posts.AsParallel().SelectMany(post => post.Comentarios);
+            var posts = postDAO.ReadAll();
+            var comentarios = posts.SelectMany(post => post.Comentarios);
             return comentarios;
         }
 
@@ -65,7 +63,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<Comentario?> Read(int id)
         {
-            var posts = await postDAO.ReadAll();
+            var posts = postDAO.ReadAll();
             var comentario = posts
                 .AsParallel()
                 .SelectMany(post => post.Comentarios)
@@ -80,7 +78,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task Update(Comentario comentario)
         {
-            var posts = await postDAO.ReadAll();
+            var posts = postDAO.ReadAll();
             var post = posts
                 .AsParallel()
                 .FirstOrDefault(post => post.Comentarios

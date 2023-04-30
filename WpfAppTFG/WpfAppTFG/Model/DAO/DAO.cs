@@ -59,7 +59,7 @@ namespace WpfAppTFG.Model.DAO
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        public async Task<IMongoQueryable<T>> ReadAll()
+        public IMongoQueryable<T> ReadAll()
         {
             var entities = Find(_ => true);
             return entities;

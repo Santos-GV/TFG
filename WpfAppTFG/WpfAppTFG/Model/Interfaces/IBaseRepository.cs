@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Driver.Linq;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace WpfAppTFG.Model.Interfaces
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        Task<IQueryable<T>> ReadAll();
+        IMongoQueryable<T> ReadAll();
 
         /// <summary>
         /// Actualiza un objeto <see cref="T"/>
