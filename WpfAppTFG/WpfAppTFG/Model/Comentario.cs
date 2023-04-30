@@ -12,13 +12,13 @@ namespace WpfAppTFG.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [BsonElement("id_usuario")]
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
         [BsonElement("contenido")]
         public string Contenido { get; set; }
 
-        public Comentario(int idUsuario, string contenido)
+        public Comentario(string idUsuario, string contenido)
         {
             IdUsuario = idUsuario;
             Contenido = contenido;
@@ -28,7 +28,7 @@ namespace WpfAppTFG.Model
         /// Obtiene el Id del <see cref="Post"/>
         /// </summary>
         /// <returns></returns>
-        public int GetId()
+        public string GetId()
         {
             return this.Id;
         }

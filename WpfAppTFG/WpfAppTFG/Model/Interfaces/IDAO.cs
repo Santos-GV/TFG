@@ -25,7 +25,7 @@ namespace WpfAppTFG.Model.Interfaces
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T?> Read(int id);
+        Task<T?> Read(string id);
 
         /// <summary>
         /// Obtiene todos los objetos del tipo del DAO

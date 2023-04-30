@@ -24,7 +24,7 @@ namespace WpfAppTFG.Model.Respository
         /// <param name="postId"></param>
         /// <param name="comentario"></param>
         /// <returns></returns>
-        public async Task Create(int postId, Comentario comentario)
+        public async Task Create(string postId, Comentario comentario)
         {
             var post = await postDAO.Read(postId);
             post?.Comentarios.Add(comentario);
@@ -38,8 +38,8 @@ namespace WpfAppTFG.Model.Respository
         public async Task Delete(Comentario comentario)
         {
             var posts = postDAO.ReadAll();
-            var post = posts
-                .FirstOrDefault(post => post.Comentarios
+            var post = await posts
+                .FirstOrDefaultAsync(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
             post?.Comentarios.Remove(comentario);
         }
@@ -61,13 +61,12 @@ namespace WpfAppTFG.Model.Respository
         /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Comentario?> Read(int id)
+        public async Task<Comentario?> Read(string id)
         {
             var posts = postDAO.ReadAll();
-            var comentario = posts
-                .AsParallel()
+            var comentario = await posts
                 .SelectMany(post => post.Comentarios)
-                .FirstOrDefault(comentario => comentario.Id == id);
+                .FirstOrDefaultAsync(comentario => comentario.Id == id);
             return comentario;
         }
 
@@ -79,12 +78,10 @@ namespace WpfAppTFG.Model.Respository
         public async Task Update(Comentario comentario)
         {
             var posts = postDAO.ReadAll();
-            var post = posts
-                .AsParallel()
-                .FirstOrDefault(post => post.Comentarios
+            var post = await posts
+                .FirstOrDefaultAsync(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
             var oldComentario = post?.Comentarios
-                .AsParallel()
                 .FirstOrDefault(_comentario => _comentario.Id == comentario.Id);
             if (oldComentario == null) return; // Comprueba que exista el comentario
             // TODO: Check code implementation

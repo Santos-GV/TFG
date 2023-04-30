@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json.Serialization;
 using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model
@@ -16,7 +15,7 @@ namespace WpfAppTFG.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [BsonElement("nombre")]
         public string Name { get; set; }
         [BsonElement("pombre")]
@@ -45,7 +44,7 @@ namespace WpfAppTFG.Model
         /// Obtiene el Id del <see cref="User"/>
         /// </summary>
         /// <returns></returns>
-        public int GetId()
+        public string GetId()
         {
             return this.Id;
         }
@@ -55,13 +54,11 @@ namespace WpfAppTFG.Model
         /// con la contraseña real encriptada
         /// </summary>
         /// <param name="input">contraseña en texto plano</param>
-        /// <param name="sal">sal del usuario</param>
-        /// <param name="realPsswd">contraseña real</param>
         /// <returns></returns>
-        private bool CompararContraseñas(string input, string sal, string realPsswd)
+        public bool CheckPsswd(string input)
         {
-            string hashedInput = HashSHA256Base64(input, sal);
-            return realPsswd.Equals(hashedInput);
+            string hashedInput = HashSHA256Base64(input, Sal);
+            return Psswd.Equals(hashedInput);
         }
 
         /// <summary>

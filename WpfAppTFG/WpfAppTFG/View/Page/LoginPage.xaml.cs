@@ -23,7 +23,7 @@ namespace WpfAppTFG.View
         private void SetWindowTitle(string title)
         {
             // Obtener la NavigationWindow que contiene esta página
-            NavigationWindow navigationWindow = GetParentWindow(this);
+            var navigationWindow = GetParentWindow(this);
 
             // Si existe una NavigationWindow, establece su propiedad Title
             if (navigationWindow != null)
@@ -35,7 +35,7 @@ namespace WpfAppTFG.View
         private static NavigationWindow? GetParentWindow(DependencyObject child)
         {
             // Recorrer el árbol visual para encontrar la NavigationWindow que contiene esta página
-            DependencyObject parent = VisualTreeHelper.GetParent(child);
+            var parent = VisualTreeHelper.GetParent(child);
 
             while (parent != null && !(parent is NavigationWindow))
             {

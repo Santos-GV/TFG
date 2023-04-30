@@ -17,7 +17,7 @@ namespace WpfAppTFG.Model.Respository
         private readonly IDAO<Post> postDAO;
         private readonly IDAO<Log> logDAO;
 
-        public UserRepository(IDAO<Comentario> comentarioDAO) : base(new UserDAO())
+        public UserRepository() : base(new UserDAO())
         {
             this.userDAO = new UserDAO();
             this.postDAO = new PostDAO();
@@ -61,7 +61,7 @@ namespace WpfAppTFG.Model.Respository
                 {
                     if (post.Comentarios.Select(c => c.IdUsuario).Contains(user.Id))
                     {
-                        post.Comentarios.RemoveAll(comentario => comentario.IdUsuario == user.Id);
+                        post.Comentarios.RemoveAll(comentario => comentario.IdUsuario.Equals(user.Id));
                         postDAO.Update(post);
                     }
                 });
@@ -74,10 +74,10 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Comentario> ReadAllComentario(int userId)
+        public IQueryable<Comentario> ReadAllComentario(string userId)
         {
             var comentarios = postDAO.ReadAll().SelectMany(post => post.Comentarios);
-            var comentariosUsuario = comentarios.Where(x => x.IdUsuario == userId);
+            var comentariosUsuario = comentarios.Where(x => x.IdUsuario.Equals(userId));
             return comentariosUsuario;
         }
 
@@ -86,10 +86,10 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Log> ReadAllLogs(int userId)
+        public IQueryable<Log> ReadAllLogs(string userId)
         {
             var logs = logDAO.ReadAll();
-            var logsUsuario = logs.Where(x => x.IdUsuario == userId);
+            var logsUsuario = logs.Where(x => x.IdUsuario.Equals(userId));
             return logsUsuario;
         }
 
@@ -98,10 +98,10 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Post> ReadAllPost(int userId)
+        public IQueryable<Post> ReadAllPost(string userId)
         {
             var posts = postDAO.ReadAll();
-            var postUsuario = posts.Where(x => x.IdUsuario == userId);
+            var postUsuario = posts.Where(x => x.IdUsuario.Equals(userId));
             return postUsuario;
         }
     }

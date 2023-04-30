@@ -18,7 +18,7 @@ namespace WpfAppTFG.View.Control
             controller = new LoginController();
         }
 
-        private async Task login_Click(object sender, RoutedEventArgs e)
+        private void login_Click(object sender, RoutedEventArgs e)
         {
             var isLogged = controller.Login(user.Text, psswd.Password);
             if (string.IsNullOrEmpty(user.Text) || string.IsNullOrEmpty(psswd.Password))
@@ -26,7 +26,7 @@ namespace WpfAppTFG.View.Control
                 info.Text = "Rellena todos los campos";
                 return;
             }
-            if (await isLogged)
+            if (isLogged.Result)
             {
                 // TODO: Abrir ventana de la aplicación
             }

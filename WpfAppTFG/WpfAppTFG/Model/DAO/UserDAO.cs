@@ -1,9 +1,4 @@
-﻿using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using WpfAppTFG.Model.Interfaces;
-
-namespace WpfAppTFG.Model.DAO
+﻿namespace WpfAppTFG.Model.DAO
 {
     /// <summary>
     /// Implementación de un DAO de <see cref="User"/>
@@ -21,7 +16,7 @@ namespace WpfAppTFG.Model.DAO
 
         protected override string GetCollectionName()
         {
-            return "Usuarios";
+            return "Users";
         }
     }
 }

@@ -18,20 +18,20 @@ namespace WpfAppTFG.Model.Interfaces
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        IQueryable<Post> ReadAllPost(int userId);
+        IQueryable<Post> ReadAllPost(string userId);
 
         /// <summary>
         /// Obtiene todos los comentarios de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        IQueryable<Comentario> ReadAllComentario(int userId);
+        IQueryable<Comentario> ReadAllComentario(string userId);
 
         /// <summary>
         /// Obtiene todos los logs de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        IQueryable<Log> ReadAllLogs(int userId);
+        IQueryable<Log> ReadAllLogs(string userId);
     }
 }

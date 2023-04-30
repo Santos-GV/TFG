@@ -49,9 +49,9 @@ namespace WpfAppTFG.Model.DAO
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<T?> Read(int id)
+        public async Task<T?> Read(string id)
         {
-            var entity = await Find(entity => entity.GetId() == id).FirstOrDefaultAsync();
+            var entity = await Find(entity => entity.GetId().Equals(id)).FirstOrDefaultAsync();
             return entity;
         }
 
