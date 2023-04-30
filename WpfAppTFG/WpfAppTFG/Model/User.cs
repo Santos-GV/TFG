@@ -18,8 +18,9 @@ namespace WpfAppTFG.Model
         public string Id { get; set; }
         [BsonElement("nombre")]
         public string Name { get; set; }
-        [BsonElement("pombre")]
+        [BsonElement("psswd")]
         private string psswd;
+        [BsonIgnore]
         public string Psswd { get => psswd; set => HashSHA256Base64(value, Sal); }
         [BsonElement("sal")]
         public string Sal { get; private set; }
@@ -34,7 +35,7 @@ namespace WpfAppTFG.Model
         {
             Name = name;
             Sal = GenerarSal();
-            Psswd = HashSHA256Base64(psswd, Sal);
+            this.psswd = HashSHA256Base64(psswd, Sal);
             Rol = rol;
             Favoritos = new List<Post>();
             Pendientes = new List<Post>();

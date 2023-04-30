@@ -34,9 +34,9 @@ namespace WpfAppTFG.Model.Respository
         {
             var usuarios = userDAO.ReadAll();
             var otherUser = usuarios
-                .Where(otherUser => otherUser.Name == user.Name)
+                .Where(otherUser => otherUser.Name.Equals(user.Name))
                 .FirstOrDefault();
-            if (otherUser == null)
+            if (otherUser != null)
             {
                 throw new UserAlreadyExists($"El nombre {user.Name} ya está en uso");
             }
