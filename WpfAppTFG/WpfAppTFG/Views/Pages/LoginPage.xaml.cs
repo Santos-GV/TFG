@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -15,40 +16,15 @@ namespace WpfAppTFG.Views.Pages
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            SetWindowTitle("Login");
+            WindownProperties.SetWindowTitle("Login", this);
         }
 
         private void login_registrarseEvento()
         {
             var registerPage = new RegisterPage();
             this.NavigationService.Navigate(registerPage);
-        }
-
-        private void SetWindowTitle(string title)
-        {
-            // Obtener la NavigationWindow que contiene esta página
-            var navigationWindow = GetParentWindow(this);
-
-            // Si existe una NavigationWindow, establece su propiedad Title
-            if (navigationWindow != null)
-            {
-                navigationWindow.Title = title;
-            }
-        }
-
-        private static NavigationWindow? GetParentWindow(DependencyObject child)
-        {
-            // Recorrer el árbol visual para encontrar la NavigationWindow que contiene esta página
-            var parent = VisualTreeHelper.GetParent(child);
-
-            while (parent != null && !(parent is NavigationWindow))
-            {
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
-            return parent as NavigationWindow;
         }
     }
 }

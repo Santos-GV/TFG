@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -23,6 +12,17 @@ namespace WpfAppTFG.Views.Pages
         public RegisterPage()
         {
             InitializeComponent();
+        }
+
+        private void regiter_Loaded(object sender, RoutedEventArgs e)
+        {
+            WindownProperties.SetWindowTitle("Register", this);
+        }
+
+        private void regiter_atrasEvento()
+        {
+            var loginPage = new LoginPage();
+            this.NavigationService.Navigate(loginPage);
         }
     }
 }

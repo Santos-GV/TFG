@@ -9,6 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="Register">
     <Grid>
-        <uc:Register x:Name="regiter"/>
+        <uc:Register x:Name="regiter" atrasEvento="regiter_atrasEvento" Loaded="regiter_Loaded"/>
     </Grid>
 </Page>

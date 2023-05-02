@@ -1,9 +1,4 @@
-﻿using MongoDB.Driver;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using WpfAppTFG.Model.Interfaces;
-
-namespace WpfAppTFG.Model.DAO
+﻿namespace WpfAppTFG.Model.DAOs
 {
     /// <summary>
     /// Implementación de un DAO de <see cref="Post"/>

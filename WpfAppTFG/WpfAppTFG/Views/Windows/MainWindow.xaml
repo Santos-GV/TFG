@@ -8,5 +8,6 @@
         Source="/Views/Pages/LoginPage.xaml"
         WindowStartupLocation="CenterScreen"
         Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
+        Background="{DynamicResource dark}"
         Title="MainWindow" Height="450" Width="800">
 </NavigationWindow>

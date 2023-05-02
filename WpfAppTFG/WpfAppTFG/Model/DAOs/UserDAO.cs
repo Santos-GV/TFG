@@ -1,4 +1,4 @@
-﻿namespace WpfAppTFG.Model.DAO
+﻿namespace WpfAppTFG.Model.DAOs
 {
     /// <summary>
     /// Implementación de un DAO de <see cref="User"/>

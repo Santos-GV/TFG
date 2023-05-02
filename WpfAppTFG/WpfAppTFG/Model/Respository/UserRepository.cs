@@ -2,7 +2,7 @@
 using MongoDB.Driver.Linq;
 using System.Linq;
 using System.Threading.Tasks;
-using WpfAppTFG.Model.DAO;
+using WpfAppTFG.Model.DAOs;
 using WpfAppTFG.Model.Exception;
 using WpfAppTFG.Model.Interfaces;
 

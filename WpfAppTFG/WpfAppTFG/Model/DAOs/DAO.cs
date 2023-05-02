@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WpfAppTFG.Model.Interfaces;
 
-namespace WpfAppTFG.Model.DAO
+namespace WpfAppTFG.Model.DAOs
 {
     public abstract class DAO<T> : IDAO<T>
     where T : IIdentifiable
