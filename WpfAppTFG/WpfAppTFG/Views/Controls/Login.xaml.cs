@@ -2,13 +2,16 @@
 using System.Windows.Controls;
 using WpfAppTFG.Controller;
 
-namespace WpfAppTFG.View.Control
+namespace WpfAppTFG.Views.Controls
 {
     /// <summary>
     /// Lógica de interacción para Login.xaml
     /// </summary>
     public partial class Login : UserControl
     {
+        public delegate void RegistrarseEvento();
+        public event RegistrarseEvento registrarseEvento;
+
         private readonly LoginController controller;
         public Login()
         {
@@ -37,7 +40,7 @@ namespace WpfAppTFG.View.Control
 
         private void register_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Abrir página de registro
+            registrarseEvento();
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WpfAppTFG.Views.Controls.Register"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAppTFG.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+    <StackPanel Style="{StaticResource bd-container}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350" Width="350">
+        <TextBlock x:Name="info" Foreground="#dc3545" FontSize="10" Margin="8,8,8,8"/>
+        <TextBlock Margin="55,8,8,8">Usuario</TextBlock>
+        <TextBox x:Name="user" Style="{StaticResource login-field}" Margin="8,8,8,8"/>
+        <TextBlock Margin="55,8,8,8">Contraseña</TextBlock>
+        <PasswordBox x:Name="psswd1" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <TextBlock Margin="55,8,8,8">Repita la contraseña</TextBlock>
+        <PasswordBox x:Name="psswd2" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8,16,8,8">
+            <Button x:Name="login" Style="{StaticResource button}" Margin="8,8,8,8" Click="registrase_Click">Registrarse</Button>
+            <Button x:Name="atras" Style="{StaticResource button}" Margin="8,8,8,8" Click="atras_Click">Atras</Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

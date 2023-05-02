@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
 
-namespace WpfAppTFG.View
+namespace WpfAppTFG.Views.Pages
 {
     /// <summary>
     /// Lógica de interacción para LoginPage.xaml
@@ -18,6 +18,12 @@ namespace WpfAppTFG.View
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             SetWindowTitle("Login");
+        }
+
+        private void login_registrarseEvento()
+        {
+            var registerPage = new RegisterPage();
+            this.NavigationService.Navigate(registerPage);
         }
 
         private void SetWindowTitle(string title)
