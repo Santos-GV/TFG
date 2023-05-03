@@ -9,5 +9,6 @@
         WindowStartupLocation="CenterScreen"
         Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
         Background="{DynamicResource dark}"
+        MinHeight="450" MinWidth="400"
         Title="MainWindow" Height="450" Width="800">
 </NavigationWindow>
