@@ -12,12 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\logotipo.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -40,6 +34,12 @@
   <ItemGroup>
     <PackageReference Include="ArmDot.Engine.MSBuildTasks" Version="2023.8.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\logotipo.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
