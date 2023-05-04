@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfAppTFG.Views.Windows.AcercaDeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppTFG.Views.Windows"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
+        Background="{DynamicResource light}"
+        Title="Acerca de" Height="600" Width="480">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock TextAlignment="Center" FontSize="32" FontWeight="Bold" Margin="16">ForoSaber</TextBlock>
+        <TextBlock TextAlignment="Center" FontSize="24" FontStyle="Italic" Margin="16">Conecta, aprende, crece</TextBlock>
+        <Image Source="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico" Height="256" Margin="16"/>
+        <TextBlock TextAlignment="Center" FontSize="24" FontStyle="Italic" Margin="16">Aprende algo nuevo cada día</TextBlock>
+    </StackPanel>
+</Window>

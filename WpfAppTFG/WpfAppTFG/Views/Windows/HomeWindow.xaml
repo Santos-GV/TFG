@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:WpfAppTFG.Views.Windows"
         xmlns:uc="clr-namespace:WpfAppTFG.Views.Controls"
         mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
+        WindowStartupLocation="CenterOwner"
         Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
         Background="{DynamicResource dark}"
-        Title="HomeWindow" Height="450" Width="800">
+        Title="Home" Height="450" Width="800"
+        Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -17,7 +18,10 @@
         </Grid.RowDefinitions>
         <Expander Grid.Row="0">
             <uc:MenuBar Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
-                        administrarUsuarios="MenuBar_administrarUsuarios"/>
+                        salirEvento="MenuBar_salirEvento"
+                        cerrarSesionEvento="MenuBar_cerrarSesionEvento"
+                        administrarUsuarios="MenuBar_administrarUsuarios"
+                        acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>
         <Frame x:Name="pagesContainer" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
