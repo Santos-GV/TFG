@@ -11,6 +11,8 @@ namespace WpfAppTFG.Views.Controls
     {
         public delegate void RegistrarseEvento();
         public event RegistrarseEvento registrarseEvento;
+        public delegate void LoginEvento();
+        public event LoginEvento loginEvento;
 
         private readonly LoginController controller;
         public Login()
@@ -21,6 +23,10 @@ namespace WpfAppTFG.Views.Controls
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
+            #if DEBUG
+                loginEvento();
+                return;
+            #endif
             var isLogged = controller.Login(user.Text, psswd.Password);
             if (string.IsNullOrEmpty(user.Text) || string.IsNullOrEmpty(psswd.Password))
             {
@@ -29,7 +35,7 @@ namespace WpfAppTFG.Views.Controls
             }
             if (isLogged.Result)
             {
-                // TODO: Abrir ventana de la aplicación
+                loginEvento();
             }
             else
             {

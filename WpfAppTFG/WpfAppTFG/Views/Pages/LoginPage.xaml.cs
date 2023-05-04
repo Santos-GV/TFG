@@ -1,8 +1,8 @@
 ﻿using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Navigation;
 using WpfAppTFG.Views.Shareds;
+using WpfAppTFG.Views.Windows;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -16,15 +16,23 @@ namespace WpfAppTFG.Views.Pages
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void login_Loaded(object sender, RoutedEventArgs e)
         {
-            WindownProperties.SetWindowTitle("Login", this);
+            WindowProperties.SetWindowTitle("Login", this);
         }
 
         private void login_registrarseEvento()
         {
             var registerPage = new RegisterPage();
             this.NavigationService.Navigate(registerPage);
+        }
+
+        private void login_loginEvento()
+        {
+            WindowProperties.SetWindowVisibility(Visibility.Hidden, this);
+            var homeWindow = new HomeWindow();
+            WindowProperties.SetWindowOwner(homeWindow, this);
+            homeWindow.Show();
         }
     }
 }

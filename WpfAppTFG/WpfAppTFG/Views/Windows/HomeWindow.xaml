@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppTFG.Views.Windows"
+        xmlns:uc="clr-namespace:WpfAppTFG.Views.Controls"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
+        Background="{DynamicResource dark}"
         Title="HomeWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0">
+            <uc:MenuBar Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
+                        administrarUsuarios="MenuBar_administrarUsuarios"/>
+        </Expander>
+        <Frame x:Name="pagesContainer" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

@@ -7,9 +7,8 @@
       xmlns:uc="clr-namespace:WpfAppTFG.Views.Controls"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="Login"
-      Loaded="Page_Loaded">
+      Title="Login">
     <Grid>
-        <uc:Login x:Name="login" registrarseEvento="login_registrarseEvento"/>
+        <uc:Login x:Name="login" loginEvento="login_loginEvento" registrarseEvento="login_registrarseEvento" Loaded="login_Loaded"/>
     </Grid>
 </Page>

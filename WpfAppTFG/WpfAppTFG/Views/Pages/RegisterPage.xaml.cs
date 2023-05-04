@@ -16,7 +16,7 @@ namespace WpfAppTFG.Views.Pages
 
         private void regiter_Loaded(object sender, RoutedEventArgs e)
         {
-            WindownProperties.SetWindowTitle("Register", this);
+            WindowProperties.SetWindowTitle("Register", this);
         }
 
         private void regiter_atrasEvento()

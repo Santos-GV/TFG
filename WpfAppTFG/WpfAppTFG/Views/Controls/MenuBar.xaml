@@ -8,7 +8,7 @@
              d:DesignHeight="24" d:DesignWidth="800">
     <Menu Style="{StaticResource menu}">
         <MenuItem Header="Inicio" Margin="8,0,8,0">
-            <MenuItem x:Name="mitCerrarSesion" Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
+            <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
             <Separator/>
             <MenuItem Style="{StaticResource menuitem}" Header="Salir" Click="salir_Click"/>
         </MenuItem>
@@ -17,7 +17,7 @@
             <MenuItem Style="{StaticResource menuitem}" Header="Favoritos" Click="Favoritos_Click"/>
             <MenuItem Style="{StaticResource menuitem}" Header="Pendientes" Click="Pendientes_Click"/>
             <Separator/>
-            <MenuItem x:Name="root" Style="{StaticResource menuitem}" Header="Administrar usuarios" Visibility="Hidden" Click="MenuItem_Click"/>
+            <MenuItem x:Name="root" Style="{StaticResource menuitem}" Header="Administrar usuarios" Click="administrarUsuarios_Click"/>
         </MenuItem>
         <MenuItem Header="Ayuda" Margin="8,0,8,0">
             <MenuItem Style="{StaticResource menuitem}" Header="Ayuda" Click="ayuda_Click"/>
