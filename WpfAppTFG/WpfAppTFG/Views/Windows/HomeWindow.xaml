@@ -17,10 +17,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Expander Grid.Row="0">
-            <uc:MenuBar Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
+            <uc:MenuBar x:Name="menu" Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
                         salirEvento="MenuBar_salirEvento"
                         cerrarSesionEvento="MenuBar_cerrarSesionEvento"
-                        administrarUsuarios="MenuBar_administrarUsuarios"
+                        postsEvento="menu_postsEvento"
+                        administrarUsuariosEvento="MenuBar_administrarUsuarios"
                         acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>
         <Image Source="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico" Grid.Row="1" Height="256" Margin="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>

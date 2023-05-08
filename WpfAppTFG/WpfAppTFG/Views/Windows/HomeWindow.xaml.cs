@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using WpfAppTFG.Model;
+using WpfAppTFG.Views.Controls;
 using WpfAppTFG.Views.Pages;
 
 namespace WpfAppTFG.Views.Windows
@@ -10,9 +11,28 @@ namespace WpfAppTFG.Views.Windows
     /// </summary>
     public partial class HomeWindow : Window
     {
+        private User user;
+
         public HomeWindow()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Crea la ventana home
+        /// </summary>
+        /// <param name="user"></param>
+        /// <exception cref="ArgumentOutOfRangeException">Rol de usuario inesperado</exception>
+        public HomeWindow(User user) : this()
+        {
+            this.user = user;
+            menu = new MenuBar(user);
+        }
+
+        private void menu_postsEvento()
+        {
+            var postsPage = new PostsPage();
+            pagesContainer.Navigate(postsPage);
         }
 
         private void MenuBar_administrarUsuarios()

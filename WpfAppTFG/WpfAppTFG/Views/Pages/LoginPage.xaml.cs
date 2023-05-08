@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using WpfAppTFG.Model;
 using WpfAppTFG.Views.Shareds;
 using WpfAppTFG.Views.Windows;
 
@@ -30,7 +31,16 @@ namespace WpfAppTFG.Views.Pages
         private void login_loginEvento()
         {
             WindowProperties.SetWindowVisibility(Visibility.Hidden, this);
-            var homeWindow = new HomeWindow();
+            var user = login.logginUser;
+            #if DEBUG
+                user = new Model.User("debug", "debug") { Rol = Rol.Administrador};
+            #endif
+            if (user is null)
+            {
+                MessageBox.Show("No se pudo abrir la aplicación");
+                return;
+            }
+            var homeWindow = new HomeWindow(user);
             WindowProperties.SetWindowOwner(homeWindow, this);
             homeWindow.Show();
         }

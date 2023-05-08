@@ -1,5 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Drawing;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using WpfAppTFG.Model;
 
 namespace WpfAppTFG.Views.Controls
 {
@@ -18,16 +22,27 @@ namespace WpfAppTFG.Views.Controls
         public event FavoritosEvento favoritosEvento;
         public delegate void PendientesEvento();
         public event PendientesEvento pendientesEvento;
-        public delegate void AdministrarUsuarios();
-        public event AdministrarUsuarios administrarUsuarios;
+        public delegate void AdministrarUsuariosEvento();
+        public event AdministrarUsuariosEvento administrarUsuariosEvento;
         public delegate void AyudaEvento();
         public event AyudaEvento ayudaEvento;
         public delegate void AcercaDeEvento();
         public event AcercaDeEvento acercaDeEvento;
+        private User user;
 
         public MenuBar()
         {
             InitializeComponent();
+        }
+
+        public MenuBar(User user) : this()
+        {
+            // TODO: check visibility at runtime
+            // Parece funcionar solo en el constructor por defecto
+            if (user.Rol.Equals(Rol.Administrador))
+            {
+                administrarUsuarios.Visibility = Visibility.Visible;
+            };
         }
 
         private void cerrarSesion_Click(object sender, RoutedEventArgs e)
@@ -57,7 +72,7 @@ namespace WpfAppTFG.Views.Controls
 
         private void administrarUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            administrarUsuarios();
+            administrarUsuariosEvento();
         }
 
         private void ayuda_Click(object sender, RoutedEventArgs e)

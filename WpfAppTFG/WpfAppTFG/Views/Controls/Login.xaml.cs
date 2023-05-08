@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controller;
+using WpfAppTFG.Model;
 
 namespace WpfAppTFG.Views.Controls
 {
@@ -13,6 +14,7 @@ namespace WpfAppTFG.Views.Controls
         public event RegistrarseEvento registrarseEvento;
         public delegate void LoginEvento();
         public event LoginEvento loginEvento;
+        public User? logginUser; 
 
         private readonly LoginController controller;
         public Login()
@@ -27,13 +29,13 @@ namespace WpfAppTFG.Views.Controls
                 loginEvento();
                 return;
             #endif
-            var isLogged = controller.Login(user.Text, psswd.Password);
-            if (string.IsNullOrEmpty(user.Text) || string.IsNullOrEmpty(psswd.Password))
+            var isLogged = controller.Login(userName.Text, psswd.Password);
+            if (string.IsNullOrEmpty(userName.Text) || string.IsNullOrEmpty(psswd.Password))
             {
                 info.Text = "Rellena todos los campos";
                 return;
             }
-            if (isLogged.Result)
+            if (isLogged.Result is not null)
             {
                 loginEvento();
             }

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppTFG.Views.Controls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="24" d:DesignWidth="800">
     <Menu Style="{StaticResource menu}">
         <MenuItem Header="Inicio" Margin="8,0,8,0">
@@ -17,7 +17,7 @@
             <MenuItem Style="{StaticResource menuitem}" Header="Favoritos" Click="Favoritos_Click"/>
             <MenuItem Style="{StaticResource menuitem}" Header="Pendientes" Click="Pendientes_Click"/>
             <Separator/>
-            <MenuItem x:Name="root" Style="{StaticResource menuitem}" Header="Administrar usuarios" Click="administrarUsuarios_Click"/>
+            <MenuItem x:Name="administrarUsuarios" Visibility="Collapsed" Style="{StaticResource menuitem}" Header="Administrar usuarios" Click="administrarUsuarios_Click"/>
         </MenuItem>
         <MenuItem Header="Ayuda" Margin="8,0,8,0">
             <MenuItem Style="{StaticResource menuitem}" Header="Ayuda" Click="ayuda_Click"/>

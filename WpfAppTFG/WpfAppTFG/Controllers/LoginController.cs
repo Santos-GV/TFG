@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver.Linq;
 using System.Threading.Tasks;
+using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
 
 namespace WpfAppTFG.Controller
@@ -15,19 +16,20 @@ namespace WpfAppTFG.Controller
 
         /// <summary>
         /// Inicia sesión con un usuario y su contraseña
+        /// Puede devolver null, si el usuario no existe
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="userPsswd"></param>
         /// <returns>Si el login se produjo con exito</returns>
-        public async Task<bool> Login(string userName, string userPsswd)
+        public async Task<User?> Login(string userName, string userPsswd)
         {
             var user = await userRepository.ReadAll()
                 .Where(user => user.Name.Equals(userName))
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
-            // Si no existe el usuario (es null) el login no es correcto
-            if (user == null) return false;
-            return user.CheckPsswd(userPsswd);
+            var isPsswdCorrect = user.CheckPsswd(userPsswd);
+            if (!isPsswdCorrect) return null;
+            return user;
         }
     }
 }

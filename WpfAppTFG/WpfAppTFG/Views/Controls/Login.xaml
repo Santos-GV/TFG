@@ -20,7 +20,7 @@
         </StackPanel.CommandBindings>
         <TextBlock x:Name="info" Foreground="{DynamicResource danger}" FontSize="16" Margin="55,16,16,16"/>
         <TextBlock Margin="55,16,8,8" >Usuario</TextBlock>
-        <TextBox x:Name="user" Style="{StaticResource login-field}" Margin="8,8,8,16"/>
+        <TextBox x:Name="userName" Style="{StaticResource login-field}" Margin="8,8,8,16"/>
         <TextBlock Margin="55,16,8,8">Contraseña</TextBlock>
         <PasswordBox x:Name="psswd" Style="{StaticResource psswd}" Margin="8,8,8,16"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="16">
