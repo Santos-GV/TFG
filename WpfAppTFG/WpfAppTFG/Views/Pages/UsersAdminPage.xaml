@@ -23,7 +23,7 @@
             <TextBlock Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16">Nombre</TextBlock>
             <TextBlock x:Name="nombre" Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16"></TextBlock>
             <TextBlock Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16">Rol</TextBlock>
-            <ComboBox  Height="24" Width="256" Margin="16"></ComboBox>
+            <ComboBox x:Name="rol" Height="24" Width="256" Margin="16" SelectionChanged="rol_SelectionChanged"></ComboBox>
             <Button Style="{StaticResource button}" Margin="16" Click="Eliminar_Click">Eliminar</Button>
         </StackPanel>
     </Grid>

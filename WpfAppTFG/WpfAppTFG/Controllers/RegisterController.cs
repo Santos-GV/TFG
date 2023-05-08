@@ -14,6 +14,12 @@ namespace WpfAppTFG.Controller
             userRepository = new UserRepository();
         }
 
+        /// <summary>
+        /// Registra un usuario en la aplicación
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPsswd"></param>
+        /// <returns>Si la se ha añadido</returns>
         public async Task<bool> Register(string userName, string userPsswd)
         {
             var user = new User(userName, userPsswd);

@@ -1,8 +1,5 @@
 ﻿using MongoDB.Driver.Linq;
-using System.Security.RightsManagement;
 using System.Threading.Tasks;
-using System.Windows;
-using WpfAppTFG.Model.Exception;
 using WpfAppTFG.Model.Respository;
 
 namespace WpfAppTFG.Controller
@@ -16,6 +13,12 @@ namespace WpfAppTFG.Controller
             userRepository = new UserRepository();
         }
 
+        /// <summary>
+        /// Inicia sesión con un usuario y su contraseña
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="userPsswd"></param>
+        /// <returns>Si el login se produjo con exito</returns>
         public async Task<bool> Login(string userName, string userPsswd)
         {
             var user = await userRepository.ReadAll()
