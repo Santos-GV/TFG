@@ -1,5 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
 using WpfAppTFG.Views.Shareds;
 
@@ -10,9 +15,14 @@ namespace WpfAppTFG.Views.Pages
     /// </summary>
     public partial class PostsPage : Page
     {
+        private readonly PostController controller;
+        private IEnumerator<Lazy<IEnumerable<Post>>> postsEnumerator;
+
         public PostsPage()
         {
             InitializeComponent();
+            controller = new PostController();
+            postsEnumerator = controller.ReadAllPostPagedLazy().Result.GetEnumerator();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -25,6 +35,30 @@ namespace WpfAppTFG.Views.Pages
         {
             // TODO: Open post
             var post = (e.Source as Post);
+        }
+
+        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            var scrollViewer = (ScrollViewer)sender;
+            // Cuando llegue al final del scroll
+            if (scrollViewer.VerticalOffset == scrollViewer.ScrollableHeight)
+            {
+                LoadNextPosts();
+            }
+        }
+
+        private void LoadNextPosts()
+        {
+            if (postsEnumerator.MoveNext())
+            {
+                var currentposts = postsEnumerator.Current.Value;
+                foreach (var post in currentposts)
+                {
+                    // TODO: Add post control
+                    var control = new Control();
+                    postsContainer.Children.Add(control);
+                }
+            }
         }
     }
 }

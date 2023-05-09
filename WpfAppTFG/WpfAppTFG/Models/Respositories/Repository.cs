@@ -1,4 +1,6 @@
 ﻿using MongoDB.Driver.Linq;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WpfAppTFG.Model.Interfaces;
@@ -58,6 +60,32 @@ namespace WpfAppTFG.Model.Respository
         public IMongoQueryable<T> ReadAll()
         {
             var entities = entityDAO.ReadAll();
+            return entities;
+        }
+
+        /// <summary>
+        /// Recupera todos los <see cref="T"/> de forma paginada.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>.
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <param name="pageNumber">El número de página a recuperar.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> ReadAllPaged(int pageSize, int pageNumber)
+        {
+            var entities = await entityDAO.ReadAllPaged(pageSize, pageNumber);
+            return entities;
+        }
+
+        /// <summary>
+        /// Recupera todos los <see cref="T"/> de forma paginada.
+        /// Los datos solo se cargan cuando hacen falta.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>.
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
+        {
+            var entities = await entityDAO.ReadAllPagedLazy(pageSize);
             return entities;
         }
 

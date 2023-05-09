@@ -1,4 +1,7 @@
-﻿using MongoDB.Driver.Linq;
+﻿using MongoDB.Driver;
+using MongoDB.Driver.Linq;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WpfAppTFG.Model.DAOs;
@@ -69,6 +72,34 @@ namespace WpfAppTFG.Model.Respository
                 .FirstOrDefaultAsync(comentario => comentario.Id == id);
             return comentario;
         }
+
+        /// <summary>
+        /// Recupera todos los <see cref="Comentario"/> de forma paginada.
+        /// </summary>
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <param name="pageNumber">El número de página a recuperar.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Comentario>> ReadAllPaged(int pageSize, int pageNumber)
+        {
+            // TODO: Make it paged
+            var comentarios = await postDAO.ReadAll()
+                .SelectMany(post => post.Comentarios)
+                .ToListAsync();
+            return comentarios;
+        }
+
+        /// <summary>
+        /// Recupera todos los <see cref="Comentario"/> de forma paginada.
+        /// Los datos solo se cargan cuando hacen falta.
+        /// </summary>
+        /// <param name="pageSize">El número máximo de objetos a recuperar por página.</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Lazy<IEnumerable<Comentario>>>> ReadAllPagedLazy(int pageSize)
+        {
+            // TODO: Make it paged and lazy
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Actualiza un <see cref="Comentario"/>
