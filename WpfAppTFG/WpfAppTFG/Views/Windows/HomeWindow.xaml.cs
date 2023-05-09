@@ -26,7 +26,7 @@ namespace WpfAppTFG.Views.Windows
         public HomeWindow(User user) : this()
         {
             this.user = user;
-            menu = new MenuBar(user);
+            menu = new MenuBarControl(user);
         }
 
         private void menu_postsEvento()

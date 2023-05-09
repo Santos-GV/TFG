@@ -1,8 +1,5 @@
-﻿using System;
-using System.Drawing;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using WpfAppTFG.Model;
 
 namespace WpfAppTFG.Views.Controls
@@ -10,7 +7,7 @@ namespace WpfAppTFG.Views.Controls
     /// <summary>
     /// Lógica de interacción para MenuBar.xaml
     /// </summary>
-    public partial class MenuBar : UserControl
+    public partial class MenuBarControl : UserControl
     {
         public delegate void CerrarSesionEvento();
         public event CerrarSesionEvento cerrarSesionEvento;
@@ -30,12 +27,12 @@ namespace WpfAppTFG.Views.Controls
         public event AcercaDeEvento acercaDeEvento;
         private User user;
 
-        public MenuBar()
+        public MenuBarControl()
         {
             InitializeComponent();
         }
 
-        public MenuBar(User user) : this()
+        public MenuBarControl(User user) : this()
         {
             // TODO: check visibility at runtime
             // Parece funcionar solo en el constructor por defecto

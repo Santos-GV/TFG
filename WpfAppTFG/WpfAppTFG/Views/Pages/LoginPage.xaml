@@ -9,6 +9,6 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="Login">
     <Grid>
-        <uc:Login x:Name="login" loginEvento="login_loginEvento" registrarseEvento="login_registrarseEvento" Loaded="login_Loaded"/>
+        <uc:LoginControl x:Name="login" loginEvento="login_loginEvento" registrarseEvento="login_registrarseEvento" Loaded="login_Loaded"/>
     </Grid>
 </Page>

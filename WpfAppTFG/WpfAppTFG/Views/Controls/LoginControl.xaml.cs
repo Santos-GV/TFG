@@ -8,7 +8,7 @@ namespace WpfAppTFG.Views.Controls
     /// <summary>
     /// Lógica de interacción para Login.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class LoginControl : UserControl
     {
         public delegate void RegistrarseEvento();
         public event RegistrarseEvento registrarseEvento;
@@ -17,7 +17,7 @@ namespace WpfAppTFG.Views.Controls
         public User? logginUser; 
 
         private readonly LoginController controller;
-        public Login()
+        public LoginControl()
         {
             InitializeComponent();
             controller = new LoginController();

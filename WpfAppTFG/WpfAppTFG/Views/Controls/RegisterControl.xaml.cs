@@ -6,14 +6,14 @@ namespace WpfAppTFG.Views.Controls
     /// <summary>
     /// Lógica de interacción para Register.xaml
     /// </summary>
-    public partial class Register : UserControl
+    public partial class RegisterControl : UserControl
     {
         public delegate void AtrasEvento();
         public event AtrasEvento atrasEvento;
 
         private readonly RegisterController registerController;
 
-        public Register()
+        public RegisterControl()
         {
             InitializeComponent();
             registerController = new RegisterController();

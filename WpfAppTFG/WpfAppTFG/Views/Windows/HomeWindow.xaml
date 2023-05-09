@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Expander Grid.Row="0">
-            <uc:MenuBar x:Name="menu" Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
+            <uc:MenuBarControl x:Name="menu" Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
                         salirEvento="MenuBar_salirEvento"
                         cerrarSesionEvento="MenuBar_cerrarSesionEvento"
                         postsEvento="menu_postsEvento"
