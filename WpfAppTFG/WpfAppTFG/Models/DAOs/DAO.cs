@@ -94,6 +94,7 @@ namespace WpfAppTFG.Model.DAOs
         /// <returns>Un <see cref="IEnumerable"/> de paginas con un <see cref="IEnumerable"/> de los elementos de esa página</returns>
         public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
         {
+            // TODO: check this line below, it takes for ever
             var total = (int)await GetCollection().CountDocumentsAsync(_ => true);
             var numPages = (int)Math.Ceiling((double)total / pageSize);
             var pages = Enumerable.Range(0, numPages)

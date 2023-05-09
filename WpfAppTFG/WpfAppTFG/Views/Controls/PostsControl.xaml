@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="WpfAppTFG.Views.Controls.PostsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfAppTFG.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="200">
+    <Border Background="{StaticResource dark}" Padding="5" CornerRadius="12" BorderThickness="2">
+        <Border Background="{StaticResource light}" CornerRadius="6">
+            <TextBlock x:Name="title" Style="{StaticResource textBlock}" TextWrapping="Wrap" Margin="8"/>
+        </Border>
+    </Border>
+</UserControl>

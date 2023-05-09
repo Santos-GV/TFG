@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
+using WpfAppTFG.Views.Controls;
 using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
@@ -54,8 +55,7 @@ namespace WpfAppTFG.Views.Pages
                 var currentposts = postsEnumerator.Current.Value;
                 foreach (var post in currentposts)
                 {
-                    // TODO: Add post control
-                    var control = new Control();
+                    var control = new PostsControl(post);
                     postsContainer.Children.Add(control);
                 }
             }
