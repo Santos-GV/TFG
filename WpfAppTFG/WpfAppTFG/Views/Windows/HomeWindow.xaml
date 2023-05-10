@@ -20,6 +20,7 @@
             <uc:MenuBarControl x:Name="menu" Height="24" VerticalAlignment="Top" Margin="24,-24,0,0"
                         salirEvento="MenuBar_salirEvento"
                         cerrarSesionEvento="MenuBar_cerrarSesionEvento"
+                        crearPostEvento="menu_crearPostEvento"
                         postsEvento="menu_postsEvento"
                         administrarUsuariosEvento="MenuBar_administrarUsuarios"
                         acercaDeEvento="MenuBar_acercaDeEvento"/>

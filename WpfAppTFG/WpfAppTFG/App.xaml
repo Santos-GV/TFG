@@ -46,6 +46,17 @@
                 <Setter Property="FontSize" Value="24"/>
             </Style>
 
+            <Style x:Key="text" TargetType="TextBox">
+                <Setter Property="Background" Value="{DynamicResource light}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="text-block" TargetType="TextBlock">
+                <Setter Property="Background" Value="{DynamicResource light}"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
             <Style x:Key="login-field" TargetType="TextBox">
                 <Setter Property="Background" Value="{StaticResource light}"/>
                 <Setter Property="Height" Value="32"/>

@@ -8,8 +8,9 @@
              d:DesignHeight="24" d:DesignWidth="800">
     <Menu Style="{StaticResource menu}">
         <MenuItem Header="Inicio" Margin="8,0,8,0">
-            <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
+            <MenuItem  Style="{StaticResource menuitem}" Header="Crear post" Click="MenuItem_Click"/>
             <Separator/>
+            <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
             <MenuItem Style="{StaticResource menuitem}" Header="Salir" Click="salir_Click"/>
         </MenuItem>
         <MenuItem x:Name="ver" Header="Ver" Margin="8,0,8,0">

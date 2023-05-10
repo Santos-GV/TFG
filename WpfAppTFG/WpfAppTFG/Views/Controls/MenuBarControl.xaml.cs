@@ -9,6 +9,8 @@ namespace WpfAppTFG.Views.Controls
     /// </summary>
     public partial class MenuBarControl : UserControl
     {
+        public delegate void CrearPostEvento();
+        public event CrearPostEvento crearPostEvento;
         public delegate void CerrarSesionEvento();
         public event CerrarSesionEvento cerrarSesionEvento;
         public delegate void SalirEvento();
@@ -80,6 +82,11 @@ namespace WpfAppTFG.Views.Controls
         private void acerdaDe_Click(object sender, RoutedEventArgs e)
         {
             acercaDeEvento();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            crearPostEvento();
         }
     }
 }

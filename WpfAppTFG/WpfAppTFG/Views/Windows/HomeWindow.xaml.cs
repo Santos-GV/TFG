@@ -70,5 +70,11 @@ namespace WpfAppTFG.Views.Windows
             // Al cerrar la ventana se cierra sesión
             MenuBar_cerrarSesionEvento();
         }
+
+        private void menu_crearPostEvento()
+        {
+            var crearPostPage = new CreatePostPage(user);
+            pagesContainer.Navigate(crearPostPage);
+        }
     }
 }
