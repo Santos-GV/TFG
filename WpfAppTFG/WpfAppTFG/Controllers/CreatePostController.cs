@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
 
@@ -20,6 +21,7 @@ namespace WpfAppTFG.Controllers
         {
             var post = new Post(user.GetId(), title, content, tags);
             await postRepository.Create(post);
+            MessageBox.Show($"Post `{title}` creado con exito", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

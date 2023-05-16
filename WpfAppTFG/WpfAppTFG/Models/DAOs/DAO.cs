@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
@@ -94,14 +95,13 @@ namespace WpfAppTFG.Model.DAOs
         /// <returns>Un <see cref="IEnumerable"/> de paginas con un <see cref="IEnumerable"/> de los elementos de esa página</returns>
         public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
         {
-            // TODO: check this line below, it takes for ever
-            var total = (int)await GetCollection().CountDocumentsAsync(_ => true);
+            var total = Find(_ => true).Count(); // CountAsync doesn't work
             var numPages = (int)Math.Ceiling((double)total / pageSize);
             var pages = Enumerable.Range(0, numPages)
                 .Select(i =>
                 {
                     var startIndex = i * pageSize;
-                    // En caso de tener menos elementos que el tamaño de la pagina
+                    // En caso de tener menos elementos que el tamaÃ±o de la pagina
                     // devulven los elementos que queden
                     var endIndex = Math.Min(startIndex + pageSize, total);
                     var items = GetCollection().Find(_ => true)
@@ -111,6 +111,13 @@ namespace WpfAppTFG.Model.DAOs
                     return new Lazy<IEnumerable<T>>(() => items);
                 });
             return pages;
+            // TODO: Find a way to chunk it with a IMongoQueriable, it dosent support Chunk operation
+            /*
+            var entites = Find(_ => true).AsEnumerable()
+                .Chunk(pageSize)
+                .Select(x => new Lazy<IEnumerable<T>>(() => x.AsEnumerable()));
+            return entites;
+            */
         }
 
 

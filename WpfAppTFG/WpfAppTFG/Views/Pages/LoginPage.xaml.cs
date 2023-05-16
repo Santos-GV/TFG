@@ -37,7 +37,7 @@ namespace WpfAppTFG.Views.Pages
             #endif
             if (user is null)
             {
-                MessageBox.Show("No se pudo abrir la aplicación");
+                MessageBox.Show("No se pudo abrir la aplicación", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var homeWindow = new HomeWindow(user);
