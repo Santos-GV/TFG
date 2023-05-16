@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfAppTFG.Views.Controls"
              mc:Ignorable="d" 
+             MouseDoubleClick="UserControl_MouseDoubleClick"
              d:DesignHeight="150" d:DesignWidth="200">
     <Border Background="{StaticResource dark}" Padding="5" CornerRadius="12" BorderThickness="2">
         <Border Background="{StaticResource light}" CornerRadius="6">

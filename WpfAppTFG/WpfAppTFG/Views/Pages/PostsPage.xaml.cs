@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
@@ -16,6 +14,8 @@ namespace WpfAppTFG.Views.Pages
     /// </summary>
     public partial class PostsPage : Page
     {
+        public delegate void AbrirPostEvento(Post post);
+        public event AbrirPostEvento abrirPostEvento;
         private readonly PostController controller;
         private IEnumerator<Lazy<IEnumerable<Post>>> postsEnumerator;
 
@@ -56,6 +56,7 @@ namespace WpfAppTFG.Views.Pages
                 foreach (var post in currentposts)
                 {
                     var control = new PostsControl(post);
+                    control.clickEvento += () => abrirPostEvento(post);
                     postsContainer.Children.Add(control);
                 }
             }

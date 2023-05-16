@@ -8,6 +8,8 @@ namespace WpfAppTFG.Views.Controls
     /// </summary>
     public partial class PostsControl : UserControl
     {
+        public delegate void ClickEvento();
+        public event ClickEvento clickEvento;
         public Post post { get; }
         public PostsControl()
         {
@@ -18,6 +20,11 @@ namespace WpfAppTFG.Views.Controls
         {
             this.post = post;
             title.Text = post.Titulo;
+        }
+
+        private void UserControl_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            clickEvento();
         }
     }
 }
