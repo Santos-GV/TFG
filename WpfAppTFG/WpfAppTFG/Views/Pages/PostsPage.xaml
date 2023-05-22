@@ -9,8 +9,39 @@
       Title="Posts"
       Loaded="Page_Loaded">
     <Grid Background="White">
-        <ScrollViewer Margin="16" ScrollChanged="ScrollViewer_ScrollChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" Margin="16" ScrollChanged="ScrollViewer_ScrollChanged">
             <WrapPanel x:Name="postsContainer" Orientation="Horizontal" MouseDown="postsContainer_MouseDown" ></WrapPanel>
         </ScrollViewer>
+        <Expander x:Name="expFiltrar" Grid.Column="1">
+            <Expander.Header>
+                <TextBlock Text="Filtrar">
+                    <TextBlock.LayoutTransform>
+                        <TransformGroup>
+                            <RotateTransform Angle="90"/>
+                        </TransformGroup>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <StackPanel Margin="16">
+                <TextBlock Style="{StaticResource textBlock}" Margin="8">Etiquetas</TextBlock>
+                <TextBox x:Name="txtEtiqueta" Style="{StaticResource text}" FontSize="16" TextAlignment="Center" Height="24" Width="240" Margin="16">
+                    <TextBox.ToolTip>
+                        <TextBlock Text="Etiqueta de filtro"/>
+                    </TextBox.ToolTip>
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Buscar" Click="btnAñadir_Click"/>
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <Button x:Name="btnAñadir" Style="{StaticResource button}" Margin="16" Click="btnAñadir_Click">Añadir</Button>
+                <WrapPanel x:Name="stpEtiquetas"/>
+                <Button x:Name="btnFiltrar" Style="{StaticResource button}" Margin="16" Click="btnFiltrar_Click">Filtrar</Button>
+            </StackPanel>
+        </Expander>
     </Grid>
 </Page>

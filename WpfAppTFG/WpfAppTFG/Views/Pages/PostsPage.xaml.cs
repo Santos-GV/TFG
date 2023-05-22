@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
@@ -18,12 +21,20 @@ namespace WpfAppTFG.Views.Pages
         public event AbrirPostEvento abrirPostEvento;
         private readonly PostController controller;
         private IEnumerator<Lazy<IEnumerable<Post>>> postsEnumerator;
+        private List<string> tags;
 
         public PostsPage()
         {
             InitializeComponent();
             controller = new PostController();
-            postsEnumerator = controller.ReadAllPostPagedLazy().Result.GetEnumerator();
+            LoadPosts().Wait();
+            tags = new List<string>();
+        }
+
+        private async Task LoadPosts()
+        {
+            var posts = await controller.ReadAllPostPagedLazy();
+            postsEnumerator = posts.GetEnumerator();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -55,11 +66,47 @@ namespace WpfAppTFG.Views.Pages
                 var currentposts = postsEnumerator.Current.Value;
                 foreach (var post in currentposts)
                 {
+                    var etiquetas = post.Etiquetas.AsEnumerable();
+                    if (!ContainsAllTags(etiquetas)) return;
                     var control = new PostsControl(post);
                     control.clickEvento += () => abrirPostEvento(post);
                     postsContainer.Children.Add(control);
                 }
             }
+        }
+
+        private bool ContainsAllTags(IEnumerable<string> etiquetas)
+        {
+            if (isEmpty(tags)) return true; // si no hay etiquetas para filtrar, se admiten todos los posts
+            if (isEmpty(etiquetas)) return false; // si hay etiquetas que filtrar y el post no tiene, no es válido
+            // Las comprobaciones anteriores son porque este código no es válido en el caso en que una de las listas está vacía
+            return isEmpty(etiquetas.Except(tags));
+        }
+
+        private bool isEmpty<T>(IEnumerable<T> ienumerable)
+        {
+            return !ienumerable.Any();
+        }
+
+        private void btnAñadir_Click(object sender, RoutedEventArgs e)
+        {
+            var etiqueta = txtEtiqueta.Text;
+            txtEtiqueta.Text = string.Empty;
+
+            var control = new TextBlock();
+            control.Text = etiqueta;
+            control.Margin = new Thickness(8);
+            control.Style = (Style)Resources["text-block"];
+
+            tags.Add(etiqueta);
+            stpEtiquetas.Children.Add(control);
+        }
+
+        private async void btnFiltrar_Click(object sender, RoutedEventArgs e)
+        {
+            await LoadPosts();
+            postsContainer.Children.Clear();
+            expFiltrar.IsExpanded = false;
         }
     }
 }
