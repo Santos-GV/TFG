@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Model;
 
@@ -18,7 +19,15 @@ namespace WpfAppTFG.Views.Controls
         {
             txtTitulo.Text = post.Titulo;
             txtContenido.Text = post.Contenido;
-            //stpEtiquetas.Text = post.Content;
+            foreach (var etiqueta in post.Etiquetas)
+            {
+                var control = new TextBlock();
+                control.Text = etiqueta;
+                control.Margin = new Thickness(8);
+                control.Style = (Style)Resources["text-block"];
+
+                stpEtiquetas.Children.Add(control);
+            }
         }
 
         private void btnVerComentarios_Click(object sender, System.Windows.RoutedEventArgs e)
