@@ -10,6 +10,11 @@ namespace WpfAppTFG.Views.Controls
     {
         public delegate void ClickEvento();
         public event ClickEvento clickEvento;
+        public delegate void ClickFavoritosEvento();
+        public event ClickFavoritosEvento clickFavoritosEvento;
+        public delegate void ClickPendientesEvento();
+        public event ClickPendientesEvento clickPendientesEvento;
+
         public Post post { get; }
         public PostsControl()
         {
@@ -25,6 +30,16 @@ namespace WpfAppTFG.Views.Controls
         private void UserControl_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             clickEvento();
+        }
+
+        private void MenuItem_Favoritos_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            clickFavoritosEvento();
+        }
+
+        private void MenuItem_Pendientes_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            clickPendientesEvento();
         }
     }
 }

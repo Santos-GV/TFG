@@ -33,7 +33,7 @@ namespace WpfAppTFG.Views.Pages
             WindowProperties.SetWindowVisibility(Visibility.Hidden, this);
             var user = login.logginUser;
             #if DEBUG
-                user = new Model.User("debug", "debug") { Rol = Rol.Administrador};
+                user ??= new Model.User("debug", "debug") { Rol = Rol.Administrador};
             #endif
             if (user is null)
             {

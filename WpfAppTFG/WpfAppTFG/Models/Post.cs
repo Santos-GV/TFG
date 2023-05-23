@@ -8,11 +8,11 @@ namespace WpfAppTFG.Model
     /// <summary>
     /// Representa un post
     /// </summary>
-    public class Post : IIdentifiable
+    public class Post : Identifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public override string Id { get; set; }
         [BsonElement("id_usuario")]
         public string IdUsuario { get; set; }
         [BsonElement("titulo")]
@@ -31,15 +31,6 @@ namespace WpfAppTFG.Model
             Contenido = contenido;
             Etiquetas = etiquetas;
             Comentarios = new List<Comentario>();
-        }
-
-        /// <summary>
-        /// Obtiene el Id del <see cref="Post"/>
-        /// </summary>
-        /// <returns></returns>
-        public string GetId()
-        {
-            return this.Id;
         }
     }
 }

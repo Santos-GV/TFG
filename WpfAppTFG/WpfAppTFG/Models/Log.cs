@@ -7,11 +7,11 @@ namespace WpfAppTFG.Model
     /// <summary>
     /// Representa un log
     /// </summary>
-    public class Log : IIdentifiable
+    public class Log : Identifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public override string Id { get; set; }
         [BsonElement("id_usuario")]
         public string IdUsuario { get; set; }
         [BsonElement("accion")]
@@ -21,15 +21,6 @@ namespace WpfAppTFG.Model
         {
             IdUsuario = idUsuario;
             Accion = accion;
-        }
-
-        /// <summary>
-        /// Obtiene el Id del <see cref="Post"/>
-        /// </summary>
-        /// <returns></returns>
-        public string GetId()
-        {
-            return this.Id;
         }
     }
 }

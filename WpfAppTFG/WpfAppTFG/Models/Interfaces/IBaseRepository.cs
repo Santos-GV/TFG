@@ -11,7 +11,7 @@ namespace WpfAppTFG.Model.Interfaces
     /// <remarks>No tiene Create</remarks>
     /// <typeparam name="T"></typeparam>
     public interface IBaseRepository<T>
-    where T : IIdentifiable
+    where T : Identifiable
     {
         /// <summary>
         /// Obtiene un <see cref="T"/>

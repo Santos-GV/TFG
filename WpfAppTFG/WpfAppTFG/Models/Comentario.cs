@@ -8,11 +8,11 @@ namespace WpfAppTFG.Model
     /// Representa un comentario
     /// Se encuentra dentro de los post, no tiene sentido por si mismo
     /// </summary>
-    public class Comentario : IIdentifiable
+    public class Comentario : Identifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public override string Id { get; set; }
         [BsonElement("id_usuario")]
         public string IdUsuario { get; set; }
         [BsonElement("contenido")]
@@ -22,15 +22,6 @@ namespace WpfAppTFG.Model
         {
             IdUsuario = idUsuario;
             Contenido = contenido;
-        }
-
-        /// <summary>
-        /// Obtiene el Id del <see cref="Post"/>
-        /// </summary>
-        /// <returns></returns>
-        public string GetId()
-        {
-            return this.Id;
         }
     }
 }

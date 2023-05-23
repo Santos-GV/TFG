@@ -31,7 +31,7 @@ namespace WpfAppTFG.Views.Windows
 
         private void menu_postsEvento()
         {
-            var postsPage = new PostsPage();
+            var postsPage = new PostsPage(user);
             postsPage.abrirPostEvento += OpenPost;
             pagesContainer.Navigate(postsPage);
         }

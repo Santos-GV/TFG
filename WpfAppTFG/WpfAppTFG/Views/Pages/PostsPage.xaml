@@ -14,7 +14,7 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0" Margin="16" ScrollChanged="ScrollViewer_ScrollChanged">
-            <WrapPanel x:Name="postsContainer" Orientation="Horizontal" MouseDown="postsContainer_MouseDown" ></WrapPanel>
+            <WrapPanel x:Name="postsContainer" Orientation="Horizontal"></WrapPanel>
         </ScrollViewer>
         <Expander x:Name="expFiltrar" Grid.Column="1">
             <Expander.Header>

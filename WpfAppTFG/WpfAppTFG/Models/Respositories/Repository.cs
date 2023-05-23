@@ -11,7 +11,7 @@ namespace WpfAppTFG.Model.Respository
     /// Implementación de un Repositorio de <see cref="Post"/>
     /// </summary>
     public class Repository<T> : IRepository<T>
-    where T : IIdentifiable
+    where T : Identifiable
     {
 
         private readonly IDAO<T> entityDAO;

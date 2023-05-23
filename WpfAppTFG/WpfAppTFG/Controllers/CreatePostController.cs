@@ -19,7 +19,7 @@ namespace WpfAppTFG.Controllers
 
         public async Task CreatePost(string title, string content, List<string> tags)
         {
-            var post = new Post(user.GetId(), title, content, tags);
+            var post = new Post(user.Id, title, content, tags);
             await postRepository.Create(post);
             MessageBox.Show($"Post `{title}` creado con exito", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }

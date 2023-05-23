@@ -11,7 +11,7 @@ using WpfAppTFG.Model.Interfaces;
 namespace WpfAppTFG.Model.DAOs
 {
     public abstract class DAO<T> : IDAO<T>
-    where T : IIdentifiable
+    where T : Identifiable
     {
         private readonly ConnectionWrapper connection;
 
@@ -41,7 +41,7 @@ namespace WpfAppTFG.Model.DAOs
         /// <returns></returns>
         public async Task Delete(T entity)
         {
-            await GetCollection().DeleteOneAsync(otherEntiry => otherEntiry.GetId() == entity.GetId());
+            await GetCollection().DeleteOneAsync(otherEntiry => otherEntiry.Id == entity.Id);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace WpfAppTFG.Model.DAOs
         /// <returns></returns>
         public async Task<T?> Read(string id)
         {
-            var entity = await Find(entity => entity.GetId().Equals(id)).FirstOrDefaultAsync();
+            var entity = await Find(entity => entity.Id.Equals(id)).FirstOrDefaultAsync();
             return entity;
         }
 
@@ -128,7 +128,7 @@ namespace WpfAppTFG.Model.DAOs
         /// <returns></returns>
         public async Task Update(T entity)
         {
-            await GetCollection().ReplaceOneAsync(otherEntity => otherEntity.GetId() == entity.GetId(), entity);
+            await GetCollection().ReplaceOneAsync(otherEntity => otherEntity.Id == entity.Id, entity);
         }
 
         /// <summary>

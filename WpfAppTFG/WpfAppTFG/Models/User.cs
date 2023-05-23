@@ -11,11 +11,11 @@ namespace WpfAppTFG.Model
     /// <summary>
     /// Representa una cuenta de usuario
     /// </summary>
-    public class User : IIdentifiable
+    public class User : Identifiable
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public override string Id { get; set; }
         [BsonElement("nombre")]
         public string Name { get; set; }
         [BsonElement("psswd")]
@@ -40,15 +40,6 @@ namespace WpfAppTFG.Model
             Rol = Rol.Regular;
             Favoritos = new List<Post>();
             Pendientes = new List<Post>();
-        }
-
-        /// <summary>
-        /// Obtiene el Id del <see cref="User"/>
-        /// </summary>
-        /// <returns></returns>
-        public string GetId()
-        {
-            return this.Id;
         }
 
         /// <summary>

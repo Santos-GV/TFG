@@ -1,10 +1,13 @@
-﻿namespace WpfAppTFG.Model.Interfaces
+﻿using MongoDB.Bson.Serialization.Attributes;
+
+namespace WpfAppTFG.Model.Interfaces
 {
     /// <summary>
     /// Representa un objeto que se puede indentificar de forma única
     /// </summary>
-    public interface IIdentifiable
+    public abstract class Identifiable
     {
-        string GetId();
+        [BsonIgnore]
+        public abstract string Id { get; set; }
     }
 }

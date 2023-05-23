@@ -26,7 +26,11 @@ namespace WpfAppTFG.Views.Pages
         public PostsPage()
         {
             InitializeComponent();
-            controller = new PostController();
+        }
+
+        public PostsPage(User user) : this()
+        {
+            controller = new PostController(user);
             LoadPosts().Wait();
             tags = new List<string>();
         }
@@ -41,12 +45,6 @@ namespace WpfAppTFG.Views.Pages
         {
             // TODO: Fix
             WindowProperties.SetWindowTitle(Title, this);
-        }
-
-        private void postsContainer_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            // TODO: Open post
-            var post = (e.Source as Post);
         }
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -70,6 +68,8 @@ namespace WpfAppTFG.Views.Pages
                     if (!ContainsAllTags(etiquetas)) return;
                     var control = new PostsControl(post);
                     control.clickEvento += () => abrirPostEvento(post);
+                    control.clickFavoritosEvento += async () => await addFavoritos(post);
+                    control.clickPendientesEvento += async () => await addPendientes(post);
                     postsContainer.Children.Add(control);
                 }
             }
@@ -107,6 +107,16 @@ namespace WpfAppTFG.Views.Pages
             await LoadPosts();
             postsContainer.Children.Clear();
             expFiltrar.IsExpanded = false;
+        }
+
+        private async Task addFavoritos(Post post)
+        {
+            await controller.addFavoritos(post);
+        }
+
+        private async Task addPendientes(Post post)
+        {
+            await controller.addPendientes(post);
         }
     }
 }

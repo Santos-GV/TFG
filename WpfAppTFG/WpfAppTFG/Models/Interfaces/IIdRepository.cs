@@ -11,7 +11,7 @@ namespace WpfAppTFG.Model.Interfaces
     /// </remarks>
     /// <typeparam name="T"></typeparam>
     public interface IIdRepository<T> : IBaseRepository<T>
-    where T : IIdentifiable
+    where T : Identifiable
     {
         /// <summary>
         /// Crea un <see cref="T"/>

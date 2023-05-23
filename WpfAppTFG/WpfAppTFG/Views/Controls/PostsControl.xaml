@@ -9,7 +9,14 @@
              d:DesignHeight="150" d:DesignWidth="200">
     <Border Background="{StaticResource dark}" Padding="5" CornerRadius="12" BorderThickness="2">
         <Border Background="{StaticResource light}" CornerRadius="6">
-            <TextBlock x:Name="title" Style="{StaticResource textBlock}" TextWrapping="Wrap" Margin="8"/>
+            <TextBlock x:Name="title" Style="{StaticResource textBlock}" TextWrapping="Wrap" Margin="8">
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Añadir a favoritos" Click="MenuItem_Favoritos_Click"/>
+                        <MenuItem Header="Añadir a pendientes" Click="MenuItem_Pendientes_Click"/>
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
         </Border>
     </Border>
 </UserControl>
