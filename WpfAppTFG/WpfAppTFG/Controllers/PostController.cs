@@ -29,15 +29,15 @@ namespace WpfAppTFG.Controllers
 
         internal async Task addFavoritos(Post post)
         {
-            if (user.Favoritos.Contains(post)) return;
-            user.Favoritos.Add(post);
+            if (user.Favoritos.Contains(post.Id)) return;
+            user.Favoritos.Add(post.Id);
             await userRepository.Update(user);
         }
 
         internal async Task addPendientes(Post post)
         {
-            if (user.Pendientes.Contains(post)) return;
-            user.Pendientes.Add(post);
+            if (user.Pendientes.Contains(post.Id)) return;
+            user.Pendientes.Add(post.Id);
             await userRepository.Update(user);
         }
     }

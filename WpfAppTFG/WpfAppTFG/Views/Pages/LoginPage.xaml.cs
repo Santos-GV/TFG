@@ -32,9 +32,6 @@ namespace WpfAppTFG.Views.Pages
         {
             WindowProperties.SetWindowVisibility(Visibility.Hidden, this);
             var user = login.logginUser;
-            #if DEBUG
-                user ??= new Model.User("debug", "debug") { Rol = Rol.Administrador};
-            #endif
             if (user is null)
             {
                 MessageBox.Show("No se pudo abrir la aplicación", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

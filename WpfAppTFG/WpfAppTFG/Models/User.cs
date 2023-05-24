@@ -28,9 +28,9 @@ namespace WpfAppTFG.Model
         [BsonRepresentation(BsonType.String)]
         public Rol Rol { get; set; }
         [BsonElement("favoritos")]
-        public List<Post> Favoritos { get; set; }
+        public List<string> Favoritos { get; set; }
         [BsonElement("pendientes")]
-        public List<Post> Pendientes { get; set; }
+        public List<string> Pendientes { get; set; }
 
         public User(string name, string psswd)
         {
@@ -38,8 +38,8 @@ namespace WpfAppTFG.Model
             Sal = GenerarSal();
             this.psswd = HashSHA256Base64(psswd, Sal);
             Rol = Rol.Regular;
-            Favoritos = new List<Post>();
-            Pendientes = new List<Post>();
+            Favoritos = new List<string>();
+            Pendientes = new List<string>();
         }
 
         /// <summary>

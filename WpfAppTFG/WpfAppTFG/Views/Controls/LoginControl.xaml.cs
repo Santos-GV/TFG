@@ -23,20 +23,18 @@ namespace WpfAppTFG.Views.Controls
             controller = new LoginController();
         }
 
-        private void login_Click(object sender, RoutedEventArgs e)
+        private async void login_Click(object sender, RoutedEventArgs e)
         {
-            #if DEBUG
-                loginEvento();
-                return;
-            #endif
-            var isLogged = controller.Login(userName.Text, psswd.Password);
+            var userTask = controller.Login(userName.Text, psswd.Password);
             if (string.IsNullOrEmpty(userName.Text) || string.IsNullOrEmpty(psswd.Password))
             {
                 info.Text = "Rellena todos los campos";
                 return;
             }
-            if (isLogged.Result is not null)
+            var user = await userTask;
+            if (user is not null)
             {
+                logginUser = user;
                 loginEvento();
             }
             else
