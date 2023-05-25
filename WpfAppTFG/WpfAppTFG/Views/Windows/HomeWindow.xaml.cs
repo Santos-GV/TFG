@@ -90,5 +90,12 @@ namespace WpfAppTFG.Views.Windows
             favoritosPage.abrirPostEvento += OpenPost;
             pagesContainer.Navigate(favoritosPage);
         }
+
+        private void menu_pendientesEvento()
+        {
+            var pendientesPage = new PendientesPage(user);
+            pendientesPage.abrirPostEvento += OpenPost;
+            pagesContainer.Navigate(pendientesPage);
+        }
     }
 }

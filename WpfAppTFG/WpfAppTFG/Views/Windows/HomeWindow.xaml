@@ -23,6 +23,7 @@
                         crearPostEvento="menu_crearPostEvento"
                         postsEvento="menu_postsEvento"
                         favoritosEvento="menu_favoritosEvento"
+                        pendientesEvento="menu_pendientesEvento"
                         administrarUsuariosEvento="MenuBar_administrarUsuarios"
                         acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>
