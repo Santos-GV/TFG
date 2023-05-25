@@ -50,9 +50,9 @@ namespace WpfAppTFG.Model.DAOs
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<T?> Read(string id)
+        public T? Read(string id)
         {
-            var entity = await Find(entity => entity.Id.Equals(id)).FirstOrDefaultAsync();
+            var entity = Find(entity => entity.Id.Equals(id)).FirstOrDefault();
             return entity;
         }
 

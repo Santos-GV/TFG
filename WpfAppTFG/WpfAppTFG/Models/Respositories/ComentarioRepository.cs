@@ -27,9 +27,9 @@ namespace WpfAppTFG.Model.Respository
         /// <param name="postId"></param>
         /// <param name="comentario"></param>
         /// <returns></returns>
-        public async Task Create(string postId, Comentario comentario)
+        public void Create(string postId, Comentario comentario)
         {
-            var post = await postDAO.Read(postId);
+            var post = postDAO.Read(postId);
             post?.Comentarios.Add(comentario);
         }
 
@@ -64,13 +64,13 @@ namespace WpfAppTFG.Model.Respository
         /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Comentario?> Read(string id)
+        public Comentario? Read(string id)
         {
             var posts = postDAO.ReadAll();
-            var comentario = await posts
+            var comentario = posts
                 .SelectMany(post => post.Comentarios)
                 .FirstOrDefaultAsync(comentario => comentario.Id == id);
-            return comentario;
+            return comentario.Result;
         }
 
         /// <summary>

@@ -47,9 +47,9 @@ namespace WpfAppTFG.Model.Respository
         /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<T?> Read(string id)
+        public T? Read(string id)
         {
-            var entity = await entityDAO.Read(id);
+            var entity = entityDAO.Read(id);
             return entity;
         }
 
