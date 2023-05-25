@@ -22,6 +22,7 @@
                         cerrarSesionEvento="MenuBar_cerrarSesionEvento"
                         crearPostEvento="menu_crearPostEvento"
                         postsEvento="menu_postsEvento"
+                        favoritosEvento="menu_favoritosEvento"
                         administrarUsuariosEvento="MenuBar_administrarUsuarios"
                         acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>

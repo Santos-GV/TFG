@@ -83,5 +83,12 @@ namespace WpfAppTFG.Views.Windows
             var crearPostPage = new CreatePostPage(user);
             pagesContainer.Navigate(crearPostPage);
         }
+
+        private void menu_favoritosEvento()
+        {
+            var favoritosPage = new FavoritosPage(user);
+            favoritosPage.abrirPostEvento += OpenPost;
+            pagesContainer.Navigate(favoritosPage);
+        }
     }
 }
