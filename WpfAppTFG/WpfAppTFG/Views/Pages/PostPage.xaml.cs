@@ -14,9 +14,9 @@ namespace WpfAppTFG.Views.Pages
             InitializeComponent();
         }
 
-        public PostPage(Post post) : this()
+        public PostPage(Post post, User user) : this()
         {
-            this.post.SetContext(post);
+            this.post.SetContext(post, user);
         }
     }
 }

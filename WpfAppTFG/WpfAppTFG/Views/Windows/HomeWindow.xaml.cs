@@ -38,7 +38,7 @@ namespace WpfAppTFG.Views.Windows
 
         private void OpenPost(Post post)
         {
-            var postPage = new PostPage(post);
+            var postPage = new PostPage(post, user);
             pagesContainer.Navigate(postPage);
         }
 
