@@ -27,7 +27,7 @@ namespace WpfAppTFG.Views.Windows
         public HomeWindow(User user) : this()
         {
             this.user = user;
-            menu = new MenuBarControl(user);
+            menu.SetContext(user);
         }
 
         private void pagesContainer_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)

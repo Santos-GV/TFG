@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Model;
 
@@ -34,13 +35,15 @@ namespace WpfAppTFG.Views.Controls
             InitializeComponent();
         }
 
-        public MenuBarControl(User user) : this()
+        public void SetContext(User user)
         {
-            // TODO: check visibility at runtime
-            // Parece funcionar solo en el constructor por defecto
-            if (user.Rol.Equals(Rol.Administrador))
+            this.user = user;
+            administrarUsuarios.Visibility = user.Rol switch
             {
-                administrarUsuarios.Visibility = Visibility.Visible;
+                Rol.Regular => Visibility.Collapsed,
+                Rol.Moderador => Visibility.Collapsed,
+                Rol.Administrador => Visibility.Visible,
+                _ => throw new ArgumentOutOfRangeException($"Rol de usuario inesperado `{user.Rol}`")
             };
         }
 
