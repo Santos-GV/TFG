@@ -12,11 +12,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Button x:Name="btnEliminar" Style="{StaticResource button-danger}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" Click="btnEliminar_Click">Eliminar</Button>
-        <WrapPanel Margin="8" Grid.Row="0">
-            <TextBlock Style="{StaticResource textBlock}" Margin="8">Titulo</TextBlock>
-            <TextBlock x:Name="txtTitulo" Style="{StaticResource text-block}" Width="140" Margin="8"></TextBlock>
-        </WrapPanel>
+        <Grid Margin="8" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Margin="8" Grid.Column="0">
+                <TextBlock Style="{StaticResource textBlock}" Margin="8">Titulo</TextBlock>
+                <TextBlock x:Name="txtTitulo" Style="{StaticResource text-block}" Width="140" Margin="8"></TextBlock>
+            </WrapPanel>
+            <Button x:Name="btnEliminar" Grid.Column="1" Style="{StaticResource button-danger}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" Click="btnEliminar_Click">Eliminar</Button>
+        </Grid>
         <Grid Margin="8" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
