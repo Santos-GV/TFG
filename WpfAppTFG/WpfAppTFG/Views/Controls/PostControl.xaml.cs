@@ -17,12 +17,13 @@ namespace WpfAppTFG.Views.Controls
         public PostControl()
         {
             InitializeComponent();
-            controller = new PostController();
+            controller = new PostController(this);
         }
 
         public void SetContext(Post post, User user)
         {
             this.post = post;
+            controller.SetContext(post, user);
             txtTitulo.Text = post.Titulo;
             txtContenido.Text = post.Contenido;
             btnEliminar.Visibility = user.Rol switch
@@ -41,16 +42,18 @@ namespace WpfAppTFG.Views.Controls
 
                 stpEtiquetas.Children.Add(control);
             }
+            foreach (var comentario in post.Comentarios)
+            {
+                var control = new ComentarioControl(comentario, user);
+                control.Margin = new Thickness(8);
+
+                stpComentarios.Children.Add(control);
+            }
         }
 
-        private void btnVerComentarios_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnComentar_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnComentar_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
+            controller.AddComentario();
         }
 
         private async void btnEliminar_Click(object sender, RoutedEventArgs e)

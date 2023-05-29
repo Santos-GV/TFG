@@ -30,7 +30,10 @@ namespace WpfAppTFG.Model.Respository
         public void Create(string postId, Comentario comentario)
         {
             var post = postDAO.Read(postId);
-            post?.Comentarios.Add(comentario);
+            if (post is null) return;
+            // TODO: Check comentario Id, its not created
+            post.Comentarios.Add(comentario);
+            postDAO.Update(post);
         }
 
         /// <summary>

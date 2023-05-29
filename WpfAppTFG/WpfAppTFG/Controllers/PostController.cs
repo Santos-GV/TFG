@@ -3,16 +3,38 @@ using System.Threading.Tasks;
 using System.Windows;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
+using WpfAppTFG.Views.Controls;
 
 namespace WpfAppTFG.Controllers
 {
     public class PostController
     {
         private readonly PostRepository postRepository;
+        private readonly ComentarioRepository comentarioRepository;
+        private readonly PostControl view;
+        private Post post;
+        private User user;
 
         public PostController()
         {
             this.postRepository = new PostRepository();
+            this.comentarioRepository = new ComentarioRepository();
+        }
+        public PostController(PostControl view) : this()
+        {
+            this.view = view;
+        }
+
+        internal void AddComentario()
+        {
+            var comentario = new Comentario(user.Id, view.txtBoxComentario.Text);
+            comentarioRepository.Create(post.Id, comentario);
+            MessageBox.Show($"Comentario creado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            var control = new ComentarioControl(comentario, user);
+            control.Margin = new Thickness(8);
+
+            view.stpComentarios.Children.Add(control);
         }
 
         internal async Task EliminarPost(Post post)
@@ -21,6 +43,12 @@ namespace WpfAppTFG.Controllers
             if (result == MessageBoxResult.No) return;
             await postRepository.Delete(post);
             MessageBox.Show($"Post `{post.Titulo} eliminado`", "Peligro", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        internal void SetContext(Post post, User user)
+        {
+            this.post = post;
+            this.user = user;
         }
     }
 }
