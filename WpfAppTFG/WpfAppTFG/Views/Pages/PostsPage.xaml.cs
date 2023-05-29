@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
 using WpfAppTFG.Views.Controls;
-using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -38,12 +37,6 @@ namespace WpfAppTFG.Views.Pages
         {
             var posts = await controller.ReadAllPostPagedLazy();
             postsEnumerator = posts.GetEnumerator();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            // TODO: Fix
-            WindowProperties.SetWindowTitle(Title, this);
         }
 
         private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)

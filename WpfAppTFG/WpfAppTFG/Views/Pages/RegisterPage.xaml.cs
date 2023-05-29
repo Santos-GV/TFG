@@ -18,7 +18,6 @@ namespace WpfAppTFG.Views.Pages
         {
             WindowProperties.SetWindowTitle("Register", this);
         }
-
         private void regiter_atrasEvento()
         {
             var loginPage = new LoginPage();

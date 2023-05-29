@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using WpfAppTFG.Model;
 using WpfAppTFG.Views.Controls;
 using WpfAppTFG.Views.Pages;
@@ -27,6 +28,12 @@ namespace WpfAppTFG.Views.Windows
         {
             this.user = user;
             menu = new MenuBarControl(user);
+        }
+
+        private void pagesContainer_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var page = pagesContainer.Content as Page;
+            this.Title = page.Title;
         }
 
         private void menu_postsEvento()

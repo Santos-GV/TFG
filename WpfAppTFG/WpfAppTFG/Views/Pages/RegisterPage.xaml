@@ -7,7 +7,7 @@
       xmlns:uc="clr-namespace:WpfAppTFG.Views.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
-      Title="Register">
+      Title="Registro">
     <Grid>
         <uc:RegisterControl x:Name="regiter" atrasEvento="regiter_atrasEvento" Loaded="regiter_Loaded"/>
     </Grid>

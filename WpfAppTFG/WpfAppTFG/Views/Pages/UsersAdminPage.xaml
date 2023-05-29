@@ -6,8 +6,7 @@
       xmlns:local="clr-namespace:WpfAppTFG.Views.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Administración de usuarios"
-      Loaded="Page_Loaded">
+      Title="Administración de usuarios">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

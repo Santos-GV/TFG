@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
-using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -23,11 +21,6 @@ namespace WpfAppTFG.Views.Pages
             rol.ItemsSource = Enum.GetValues<Rol>();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            WindowProperties.SetWindowTitle("Administración de usuarios", this);
-        }
-
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
             var userName = nombreBusqueda.Text;
@@ -43,7 +36,7 @@ namespace WpfAppTFG.Views.Pages
 
         private void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            const string message = 
+            const string message =
 @"¿Estás seguro?
 Está accicion no se puede deshacer";
             var result = MessageBox.Show(message, "Eliminar usuario", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);

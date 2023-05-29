@@ -1,7 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Automation;
 using System.Windows.Controls;
-using WpfAppTFG.Model;
 using WpfAppTFG.Views.Shareds;
 using WpfAppTFG.Views.Windows;
 
@@ -16,7 +14,6 @@ namespace WpfAppTFG.Views.Pages
         {
             InitializeComponent();
         }
-
         private void login_Loaded(object sender, RoutedEventArgs e)
         {
             WindowProperties.SetWindowTitle("Login", this);

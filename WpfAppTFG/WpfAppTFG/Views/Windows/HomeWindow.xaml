@@ -28,6 +28,6 @@
                         acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>
         <Image Source="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico" Grid.Row="1" Height="256" Margin="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Frame x:Name="pagesContainer" Grid.Row="1" NavigationUIVisibility="Hidden"></Frame>
+        <Frame x:Name="pagesContainer" Grid.Row="1" Navigated="pagesContainer_Navigated" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

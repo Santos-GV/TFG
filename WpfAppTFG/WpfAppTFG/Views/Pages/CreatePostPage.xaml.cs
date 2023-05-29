@@ -1,7 +1,5 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using WpfAppTFG.Model;
-using WpfAppTFG.Views.Shareds;
 
 namespace WpfAppTFG.Views.Pages
 {
@@ -18,11 +16,6 @@ namespace WpfAppTFG.Views.Pages
         public CreatePostPage(User user) : this()
         {
             control.SetUser(user);
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            WindowProperties.SetWindowTitle("Crear Post", this);
         }
     }
 }
