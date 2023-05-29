@@ -38,7 +38,7 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public virtual async Task Delete(T entiti)
         {
-            await entityDAO.Create(entiti);
+            await entityDAO.Delete(entiti);
         }
 
         /// <summary>

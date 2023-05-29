@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
 
@@ -10,35 +9,18 @@ namespace WpfAppTFG.Controllers
     public class PostController
     {
         private readonly PostRepository postRepository;
-        private readonly UserRepository userRepository;
-        private readonly User user;
 
-        public PostController(User user)
+        public PostController()
         {
             this.postRepository = new PostRepository();
-            this.userRepository = new UserRepository();
-            this.user = user;
         }
 
-        public async Task<IEnumerable<Lazy<IEnumerable<Post>>>> ReadAllPostPagedLazy()
+        internal async Task EliminarPost(Post post)
         {
-            const int pageSize = 20;
-            var posts = await postRepository.ReadAllPagedLazy(pageSize);
-            return posts;
-        }
-
-        internal async Task addFavoritos(Post post)
-        {
-            if (user.Favoritos.Contains(post.Id)) return;
-            user.Favoritos.Add(post.Id);
-            await userRepository.Update(user);
-        }
-
-        internal async Task addPendientes(Post post)
-        {
-            if (user.Pendientes.Contains(post.Id)) return;
-            user.Pendientes.Add(post.Id);
-            await userRepository.Update(user);
+            var result = MessageBox.Show($"Quiere eliminar el Post `{post.Titulo}`?", "Peligro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.No) return;
+            await postRepository.Delete(post);
+            MessageBox.Show($"Post `{post.Titulo} eliminado`", "Peligro", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
 
 namespace WpfAppTFG.Views.Controls
@@ -10,13 +11,18 @@ namespace WpfAppTFG.Views.Controls
     /// </summary>
     public partial class PostControl : UserControl
     {
+        private readonly PostController controller;
+        private Post post;
+
         public PostControl()
         {
             InitializeComponent();
+            controller = new PostController();
         }
 
         public void SetContext(Post post, User user)
         {
+            this.post = post;
             txtTitulo.Text = post.Titulo;
             txtContenido.Text = post.Contenido;
             btnEliminar.Visibility = user.Rol switch
@@ -47,11 +53,9 @@ namespace WpfAppTFG.Views.Controls
 
         }
 
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        private async void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show($"Quiere eliminar el Post `{txtTitulo.Text}`", "Peligro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.No) return;
-            // TODO: Eliminar Post
+            await controller.EliminarPost(post);
         }
     }
 }

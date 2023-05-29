@@ -17,7 +17,7 @@ namespace WpfAppTFG.Views.Pages
     {
         public delegate void AbrirPostEvento(Post post);
         public event AbrirPostEvento abrirPostEvento;
-        private readonly PostController controller;
+        private readonly PostsController controller;
         private IEnumerator<Lazy<IEnumerable<Post>>> postsEnumerator;
         private List<string> tags;
 
@@ -28,7 +28,7 @@ namespace WpfAppTFG.Views.Pages
 
         public PostsPage(User user) : this()
         {
-            controller = new PostController(user);
+            controller = new PostsController(user);
             LoadPosts().Wait();
             tags = new List<string>();
         }
