@@ -416,3 +416,9 @@ Debug/
 Release/
 
 # End of Instalador de Visual Studio
+
+### Connection String
+
+ConnectionStringDictionary.xaml
+
+# End of Connection String
