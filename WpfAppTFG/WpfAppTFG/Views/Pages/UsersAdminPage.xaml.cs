@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
@@ -12,47 +13,26 @@ namespace WpfAppTFG.Views.Pages
     public partial class UsersAdminPage : Page
     {
         private readonly UsersAdminController controller;
-        private User? user;
 
         public UsersAdminPage()
         {
             InitializeComponent();
-            controller = new UsersAdminController();
-            rol.ItemsSource = Enum.GetValues<Rol>();
+            controller = new UsersAdminController(this);
         }
 
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
-            var userName = nombreBusqueda.Text;
-            user = controller.SearchUser(userName);
-            if (user == null)
-            {
-                info.Content = "El usuario no existe";
-                return;
-            }
-            nombre.Text = user.Name;
-            rol.SelectedItem = user.Rol;
+            controller.Buscar();
         }
 
-        private void Eliminar_Click(object sender, RoutedEventArgs e)
+        private async void Eliminar_Click(object sender, RoutedEventArgs e)
         {
-            const string message =
-@"¿Estás seguro?
-Está accicion no se puede deshacer";
-            var result = MessageBox.Show(message, "Eliminar usuario", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-            if (result == MessageBoxResult.No) return;
-            if (user == null) return;
-            controller.Delete(user).Wait();
+            await controller.Eliminar();
         }
 
-        private void rol_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void rol_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedRol = rol.SelectedItem.ToString();
-            if (selectedRol == null) return;
-            var isParsed = Enum.TryParse(selectedRol, out Rol newRol);
-            if (!isParsed) return;
-            if (user == null) return;
-            user.Rol = newRol;
+            await controller.CambiarRol();
         }
     }
 }
