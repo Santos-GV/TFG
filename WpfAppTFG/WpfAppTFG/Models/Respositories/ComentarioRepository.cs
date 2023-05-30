@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace WpfAppTFG.Model.Respository
         {
             var post = postDAO.Read(postId);
             if (post is null) return;
-            // TODO: Check comentario Id, its not created
+            comentario.Id = ObjectId.GenerateNewId().ToString();
             post.Comentarios.Add(comentario);
             postDAO.Update(post);
         }
@@ -47,7 +48,11 @@ namespace WpfAppTFG.Model.Respository
             var post = await posts
                 .FirstOrDefaultAsync(post => post.Comentarios
                     .Any(_comentario => _comentario.Id == comentario.Id));
-            post?.Comentarios.Remove(comentario);
+            if (post == null) return;
+            post.Comentarios = post.Comentarios
+                .Where(otherComentario => !otherComentario.Id.Equals(comentario.Id))
+                .ToList();
+            await postDAO.Update(post);
         }
 
         /// <summary>

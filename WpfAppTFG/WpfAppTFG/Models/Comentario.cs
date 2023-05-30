@@ -12,6 +12,7 @@ namespace WpfAppTFG.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [BsonElement("id_comentario")]
         public override string Id { get; set; }
         [BsonElement("id_usuario")]
         public string IdUsuario { get; set; }

@@ -31,6 +31,8 @@ namespace WpfAppTFG.Controllers
             comentarioRepository.Create(post.Id, comentario);
             MessageBox.Show($"Comentario creado", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
 
+            view.txtBoxComentario.Text = string.Empty;
+
             var control = new ComentarioControl(comentario, user);
             control.Margin = new Thickness(8);
 
