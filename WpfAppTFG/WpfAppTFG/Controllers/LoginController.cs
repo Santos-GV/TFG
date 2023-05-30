@@ -27,6 +27,7 @@ namespace WpfAppTFG.Controller
                 .Where(user => user.Name.Equals(userName))
                 .FirstOrDefaultAsync()
                 .ConfigureAwait(false);
+            if (user == null) return null;
             var isPsswdCorrect = user.CheckPsswd(userPsswd);
             if (!isPsswdCorrect) return null;
             return user;
