@@ -36,6 +36,9 @@ namespace WpfAppTFG.Views.Controls
             {
                 logginUser = user;
                 loginEvento();
+                info.Text = string.Empty;
+                userName.Text = string.Empty;
+                psswd.Password = string.Empty;
             }
             else
             {
