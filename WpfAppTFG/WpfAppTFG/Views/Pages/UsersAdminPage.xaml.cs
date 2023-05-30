@@ -24,7 +24,7 @@ namespace WpfAppTFG.Views.Pages
         private void Buscar_Click(object sender, RoutedEventArgs e)
         {
             var userName = nombreBusqueda.Text;
-            user = controller.SearchUser(userName).Result;
+            user = controller.SearchUser(userName);
             if (user == null)
             {
                 info.Content = "El usuario no existe";

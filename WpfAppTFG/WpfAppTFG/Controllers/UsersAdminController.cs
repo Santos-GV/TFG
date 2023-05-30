@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
@@ -20,11 +21,11 @@ namespace WpfAppTFG.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public async Task<User?> SearchUser(string userName)
+        public User? SearchUser(string userName)
         {
-            var user = await userRepository
+            var user = userRepository
                 .ReadAll()
-                .FirstOrDefaultAsync(x => x.Name.Equals(userName));
+                .FirstOrDefault(x => x.Name.Equals(userName));
             return user;
         }
 
