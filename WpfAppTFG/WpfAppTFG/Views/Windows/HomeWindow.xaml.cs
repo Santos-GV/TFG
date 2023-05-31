@@ -51,6 +51,7 @@ namespace WpfAppTFG.Views.Windows
         private void OpenPost(Post post)
         {
             var postPage = new PostPage(post, user);
+            postPage.postEliminadoEvento += NavigateHome;
             pagesContainer.Navigate(postPage);
         }
 
@@ -93,7 +94,7 @@ namespace WpfAppTFG.Views.Windows
         private void menu_crearPostEvento()
         {
             var crearPostPage = new CreatePostPage(user);
-            crearPostPage.postCreadoEvento += () => pagesContainer.Content = null; ;
+            crearPostPage.postCreadoEvento += NavigateHome;
             pagesContainer.Navigate(crearPostPage);
         }
 
@@ -109,6 +110,11 @@ namespace WpfAppTFG.Views.Windows
             var pendientesPage = new PendientesPage(user);
             pendientesPage.abrirPostEvento += OpenPost;
             pagesContainer.Navigate(pendientesPage);
+        }
+
+        private void NavigateHome()
+        {
+            pagesContainer.Content = null;
         }
     }
 }
