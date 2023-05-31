@@ -57,7 +57,7 @@ namespace WpfAppTFG.Views.Pages
                 foreach (var post in currentposts)
                 {
                     var etiquetas = post.Etiquetas.AsEnumerable();
-                    if (!ContainsAllTags(etiquetas)) return;
+                    if (!ContainsAllTags(etiquetas)) continue;
                     var control = new PostsControl(post);
                     control.clickEvento += () => abrirPostEvento(post);
                     control.clickFavoritosEvento += async () => await addFavoritos(post);
