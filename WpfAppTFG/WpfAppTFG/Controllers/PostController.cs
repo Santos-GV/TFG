@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
 using WpfAppTFG.Views.Controls;
+using WpfAppTFG.Views.Pages;
 
 namespace WpfAppTFG.Controllers
 {
@@ -11,7 +11,7 @@ namespace WpfAppTFG.Controllers
     {
         private readonly PostRepository postRepository;
         private readonly ComentarioRepository comentarioRepository;
-        private readonly PostControl view;
+        private readonly PostPage view;
         private Post post;
         private User user;
 
@@ -20,7 +20,7 @@ namespace WpfAppTFG.Controllers
             this.postRepository = new PostRepository();
             this.comentarioRepository = new ComentarioRepository();
         }
-        public PostController(PostControl view) : this()
+        public PostController(PostPage view) : this()
         {
             this.view = view;
         }
