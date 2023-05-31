@@ -8,7 +8,17 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
       Title="Registro">
-    <Grid>
-        <uc:RegisterControl x:Name="regiter" atrasEvento="regiter_atrasEvento" Loaded="regiter_Loaded"/>
-    </Grid>
+    <StackPanel Style="{StaticResource bd-container}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350" Width="350">
+        <TextBlock x:Name="info" Foreground="{DynamicResource danger}" FontSize="16" Margin="55,16,16,16"/>
+        <TextBlock Margin="55,8,8,8">Usuario</TextBlock>
+        <TextBox x:Name="user" Style="{StaticResource login-field}" Margin="8,8,8,8"/>
+        <TextBlock Margin="55,8,8,8">Contraseña</TextBlock>
+        <PasswordBox x:Name="psswd1" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <TextBlock Margin="55,8,8,8">Repita la contraseña</TextBlock>
+        <PasswordBox x:Name="psswd2" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8,16,8,8">
+            <Button x:Name="login" Style="{StaticResource button}" Margin="8,8,8,8" Click="registrase_Click">Registrarse</Button>
+            <Button x:Name="atras" Style="{StaticResource button}" Margin="8,8,8,8" Click="atras_Click">Atras</Button>
+        </StackPanel>
+    </StackPanel>
 </Page>
