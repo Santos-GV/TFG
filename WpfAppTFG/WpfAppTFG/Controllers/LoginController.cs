@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver.Linq;
+using System.Linq;
 using System.Threading.Tasks;
 using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
@@ -23,10 +24,9 @@ namespace WpfAppTFG.Controller
         /// <returns>Si el login se produjo con exito</returns>
         public async Task<User?> Login(string userName, string userPsswd)
         {
-            var user = await userRepository.ReadAll()
+            var user = (await userRepository.ReadAll().ConfigureAwait(false))
                 .Where(user => user.Name.Equals(userName))
-                .FirstOrDefaultAsync()
-                .ConfigureAwait(false);
+                .FirstOrDefault();
             if (user == null) return null;
             var isPsswdCorrect = user.CheckPsswd(userPsswd);
             if (!isPsswdCorrect) return null;

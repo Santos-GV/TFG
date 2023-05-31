@@ -13,9 +13,9 @@ namespace WpfAppTFG.Controllers
         private readonly UserRepository userRepository;
         private readonly ComentarioControl view;
 
-        public ComentarioController(ComentarioControl view)
+        public ComentarioController(ComentarioControl view, User user)
         {
-            this.comentarioRepository = new ComentarioRepository();
+            this.comentarioRepository = new ComentarioRepository(user);
             this.userRepository = new UserRepository();
             this.view = view;
         }
@@ -29,9 +29,9 @@ namespace WpfAppTFG.Controllers
             view.Visibility = Visibility.Collapsed;
         }
 
-        internal void SetContent(Comentario comentario, User user)
+        internal async Task SetContent(Comentario comentario, User user)
         {
-            var commentUser = userRepository.Read(comentario.IdUsuario);
+            var commentUser = await userRepository.Read(comentario.IdUsuario);
             view.usuario.Text = commentUser?.Name;
             view.contenido.Text = comentario.Contenido;
             view.btnEliminar.Visibility = user.Rol switch

@@ -14,7 +14,7 @@ namespace WpfAppTFG.Controllers
 
         public PostsController(User user)
         {
-            this.postRepository = new PostRepository();
+            this.postRepository = new PostRepository(user);
             this.userRepository = new UserRepository();
             this.user = user;
         }

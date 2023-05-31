@@ -13,7 +13,7 @@ namespace WpfAppTFG.Controllers
 
         public CreatePostController(User user)
         {
-            this.postRepository = new PostRepository();
+            this.postRepository = new PostRepository(user);
             this.user = user;
         }
 

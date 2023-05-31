@@ -19,6 +19,6 @@ namespace WpfAppTFG.Model.Interfaces
         /// <param name="id"></param>
         /// <param name="entity"></param>
         /// <returns></returns>
-        void Create(string id, T entity);
+        Task Create(string id, T entity);
     }
 }

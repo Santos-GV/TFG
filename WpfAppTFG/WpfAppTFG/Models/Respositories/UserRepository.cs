@@ -16,12 +16,14 @@ namespace WpfAppTFG.Model.Respository
         private readonly IDAO<User> userDAO;
         private readonly IDAO<Post> postDAO;
         private readonly IDAO<Log> logDAO;
+        private readonly User user;
 
-        public UserRepository() : base(new UserDAO())
+        public UserRepository() : base(new UserDAO(), null)
         {
             this.userDAO = new UserDAO();
             this.postDAO = new PostDAO();
             this.logDAO = new LogDAO();
+            this.user = null;
         }
 
         /// <summary>
@@ -40,7 +42,10 @@ namespace WpfAppTFG.Model.Respository
             {
                 throw new UserAlreadyExists($"El nombre {user.Name} ya está en uso");
             }
+            // TODO: Check create for user and log, both get freeze
             await userDAO.Create(user);
+            //var log = new Log(user.Id, $"Creado usuario `{user.Id}`");
+            //await logDAO.Create(log);
         }
 
         /// <summary>
@@ -65,8 +70,10 @@ namespace WpfAppTFG.Model.Respository
                         postDAO.Update(post);
                     }
                 });
+            var log = new Log(user.Id, $"Eliminado usuario `{user.Id}`");
+            var logTask = logDAO.Create(log);
             // Espera asíncrona y no bloqueantemente a que se eliminen todos los datos
-            await Task.WhenAll(postsTask, comentariosTask);
+            await Task.WhenAll(postsTask, comentariosTask, logTask);
         }
 
         /// <summary>
@@ -74,10 +81,12 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Comentario> ReadAllComentario(string userId)
+        public async Task<IQueryable<Comentario>> ReadAllComentario(string userId)
         {
             var comentarios = postDAO.ReadAll().SelectMany(post => post.Comentarios);
             var comentariosUsuario = comentarios.Where(x => x.IdUsuario.Equals(userId));
+            var log = new Log(user.Id, $"Lee todos los `{typeof(Comentario)}` del usuario `{userId}`");
+            await logDAO.Create(log);
             return comentariosUsuario;
         }
 
@@ -86,10 +95,12 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Log> ReadAllLogs(string userId)
+        public async Task<IQueryable<Log>> ReadAllLogs(string userId)
         {
             var logs = logDAO.ReadAll();
             var logsUsuario = logs.Where(x => x.IdUsuario.Equals(userId));
+            var log = new Log(user.Id, $"Lee todos los `{typeof(Log)}` de `{userId}`");
+            await logDAO.Create(log);
             return logsUsuario;
         }
 
@@ -98,10 +109,12 @@ namespace WpfAppTFG.Model.Respository
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IQueryable<Post> ReadAllPost(string userId)
+        public async Task<IQueryable<Post>> ReadAllPost(string userId)
         {
             var posts = postDAO.ReadAll();
             var postUsuario = posts.Where(x => x.IdUsuario.Equals(userId));
+            var log = new Log(user.Id, $"Lee todos los ``{typeof(Post)}` `{userId}`");
+            await logDAO.Create(log);
             return postUsuario;
         }
     }

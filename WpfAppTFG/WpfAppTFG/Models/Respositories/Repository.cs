@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using WpfAppTFG.Model.DAOs;
 using WpfAppTFG.Model.Interfaces;
 
 namespace WpfAppTFG.Model.Respository
@@ -13,12 +13,15 @@ namespace WpfAppTFG.Model.Respository
     public class Repository<T> : IRepository<T>
     where T : Identifiable
     {
-
         private readonly IDAO<T> entityDAO;
+        private readonly IDAO<Log> logDAO;
+        private readonly User? user;
 
-        public Repository(IDAO<T> dao)
+        public Repository(IDAO<T> dao, User user)
         {
             this.entityDAO = dao;
+            this.logDAO = new LogDAO();
+            this.user = user;
         }
 
         /// <summary>
@@ -28,7 +31,10 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public virtual async Task Create(T entiti)
         {
-            await entityDAO.Create(entiti);
+            var entitiTask = entityDAO.Create(entiti);
+            var log = new Log(user?.Id, $"Creado recurso `{entiti.Id}`");
+            var logTask = logDAO.Create(log);
+            await Task.WhenAll(entitiTask, logTask);
         }
 
         /// <summary>
@@ -38,7 +44,10 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public virtual async Task Delete(T entiti)
         {
-            await entityDAO.Delete(entiti);
+            var entitiTask = entityDAO.Delete(entiti);
+            var log = new Log(user?.Id, $"Eliminado recurso `{entiti.Id}`");
+            var logTask = logDAO.Create(log);
+            await Task.WhenAll(entitiTask, logTask);
         }
 
         /// <summary>
@@ -47,19 +56,23 @@ namespace WpfAppTFG.Model.Respository
         /// <remarks>Puede ser nulo, si no existe</remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T? Read(string id)
+        public async Task<T?> Read(string id)
         {
-            var entity = entityDAO.Read(id);
-            return entity;
+            var entityTask = entityDAO.Read(id);
+            var log = new Log(user?.Id, $"Lee recurso `{id}`");
+            await logDAO.Create(log);
+            return entityTask;
         }
 
         /// <summary>
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        public IMongoQueryable<T> ReadAll()
+        public async Task<IMongoQueryable<T>> ReadAll()
         {
             var entities = entityDAO.ReadAll();
+            var log = new Log(user?.Id, $"Lee todos los `{typeof(T)}`");
+            await logDAO.Create(log);
             return entities;
         }
 
@@ -72,8 +85,11 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task<IEnumerable<T>> ReadAllPaged(int pageSize, int pageNumber)
         {
-            var entities = await entityDAO.ReadAllPaged(pageSize, pageNumber);
-            return entities;
+            var entitiesTask = entityDAO.ReadAllPaged(pageSize, pageNumber);
+            var log = new Log(user?.Id, $"Lee todos los `{typeof(T)}` de forma paginada");
+            var logTask = logDAO.Create(log);
+            await Task.WhenAll(entitiesTask, logTask);
+            return await entitiesTask;
         }
 
         /// <summary>
@@ -86,6 +102,9 @@ namespace WpfAppTFG.Model.Respository
         public async Task<IEnumerable<Lazy<IEnumerable<T>>>> ReadAllPagedLazy(int pageSize)
         {
             var entities = await entityDAO.ReadAllPagedLazy(pageSize);
+            // TODO: Check log creating, it freezes
+            //var log = new Log(user?.Id, $"Lee todos los `{typeof(T)}` de forma paginada y perezosa");
+            //await logDAO.Create(log).Wait();
             return entities;
         }
 
@@ -96,7 +115,10 @@ namespace WpfAppTFG.Model.Respository
         /// <returns></returns>
         public async Task Update(T entity)
         {
-            await entityDAO.Update(entity);
+            var entitiTask = entityDAO.Update(entity);
+            var log = new Log(user?.Id, $"Actualiza el recurso `{entity.Id}`");
+            var logTask = logDAO.Create(log);
+            await Task.WhenAll(entitiTask, logTask);
         }
     }
 }

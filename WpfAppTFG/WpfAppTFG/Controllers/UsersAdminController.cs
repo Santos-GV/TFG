@@ -31,10 +31,10 @@ namespace WpfAppTFG.Controllers
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        private User? SearchUser(string userName)
+        private async Task<User?> SearchUser(string userName)
         {
-            var user = userRepository
-                .ReadAll()
+            var user = (await userRepository
+                .ReadAll())
                 .FirstOrDefault(x => x.Name.Equals(userName));
             return user;
         }
@@ -44,10 +44,10 @@ namespace WpfAppTFG.Controllers
             await userRepository.Delete(user);
         }
 
-        public void Buscar()
+        public async Task Buscar()
         {
             var userName = view.nombreBusqueda.Text;
-            user = SearchUser(userName);
+            user = await SearchUser(userName);
             if (user == null)
             {
                 view.info.Content = "El usuario no existe";
