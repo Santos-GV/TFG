@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace WpfAppTFG.Model.Interfaces
@@ -17,20 +18,20 @@ namespace WpfAppTFG.Model.Interfaces
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<IQueryable<Post>> ReadAllPost(string userId);
+        IQueryable<Post> ReadAllPost(string userId);
 
         /// <summary>
         /// Obtiene todos los comentarios de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<IQueryable<Comentario>> ReadAllComentario(string userId);
+        IQueryable<Comentario> ReadAllComentario(string userId);
 
         /// <summary>
         /// Obtiene todos los logs de un <see cref="User"/>
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task<IQueryable<Log>> ReadAllLogs(string userId);
+        IQueryable<Log> ReadAllLogs(string userId);
     }
 }

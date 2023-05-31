@@ -15,7 +15,7 @@ namespace WpfAppTFG.Controllers
         public PendientesController(User user)
         {
             this.user = user;
-            this.postRepository = new PostRepository(user);
+            this.postRepository = new PostRepository();
             this.userRepository = new UserRepository();
         }
 

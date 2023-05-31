@@ -8,7 +8,7 @@ namespace WpfAppTFG.Model.Respository
     public class LogRepository : Repository<Log>
     {
 
-        public LogRepository(User user) : base(new LogDAO(), user)
+        public LogRepository() : base(new LogDAO())
         {
         }
     }

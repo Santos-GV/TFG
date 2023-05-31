@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
 
@@ -14,22 +13,22 @@ namespace WpfAppTFG.Views.Controls
         private readonly User user;
         private readonly ComentarioController controller;
 
-        public ComentarioControl(User user)
+        public ComentarioControl()
         {
             InitializeComponent();
-            controller = new ComentarioController(this, user);
+            controller = new ComentarioController(this);
         }
 
-        public ComentarioControl(Comentario comentario, User user) : this(user)
+        public ComentarioControl(Comentario comentario, User user) : this()
         {
             this.comentario = comentario;
             this.user = user;
-            SetContent().Wait();
+            SetContent();
         }
 
-        private async Task SetContent()
+        private void SetContent()
         {
-            await controller.SetContent(comentario, user);
+            controller.SetContent(comentario, user);
         }
 
         private async void btnEliminar_Click(object sender, System.Windows.RoutedEventArgs e)

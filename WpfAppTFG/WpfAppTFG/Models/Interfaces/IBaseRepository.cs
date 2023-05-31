@@ -21,13 +21,13 @@ namespace WpfAppTFG.Model.Interfaces
         /// </remarks>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<T?> Read(string id);
+        T? Read(string id);
 
         /// <summary>
         /// Obtiene todos los <see cref="T"/>
         /// </summary>
         /// <returns></returns>
-        Task<IMongoQueryable<T>> ReadAll();
+        IMongoQueryable<T> ReadAll();
 
         /// <summary>
         /// Recupera todos los <see cref="T"/> de forma paginada.

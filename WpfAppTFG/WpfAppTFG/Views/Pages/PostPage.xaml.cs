@@ -17,13 +17,13 @@ namespace WpfAppTFG.Views.Pages
         private readonly PostController controller;
         private Post post;
 
-        public PostPage(User user)
+        public PostPage()
         {
             InitializeComponent();
-            controller = new PostController(this, user);
+            controller = new PostController(this);
         }
 
-        public PostPage(Post post, User user) : this(user)
+        public PostPage(Post post, User user) : this()
         {
             SetContext(post, user);
         }

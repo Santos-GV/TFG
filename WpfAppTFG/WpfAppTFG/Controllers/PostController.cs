@@ -15,12 +15,12 @@ namespace WpfAppTFG.Controllers
         private Post post;
         private User user;
 
-        public PostController(User user)
+        public PostController()
         {
-            this.postRepository = new PostRepository(user);
-            this.comentarioRepository = new ComentarioRepository(user);
+            this.postRepository = new PostRepository();
+            this.comentarioRepository = new ComentarioRepository();
         }
-        public PostController(PostPage view, User user) : this(user)
+        public PostController(PostPage view) : this()
         {
             this.view = view;
         }

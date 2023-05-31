@@ -8,7 +8,7 @@ namespace WpfAppTFG.Model.Respository
     public class PostRepository : Repository<Post>
     {
 
-        public PostRepository(User user) : base(new PostDAO(), user)
+        public PostRepository() : base(new PostDAO())
         {
         }
     }
