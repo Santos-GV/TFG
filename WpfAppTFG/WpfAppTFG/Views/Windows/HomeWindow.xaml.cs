@@ -33,6 +33,11 @@ namespace WpfAppTFG.Views.Windows
         private void pagesContainer_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             var page = pagesContainer.Content as Page;
+            if (page == null)
+            {
+                this.Title = "Home";
+                return;
+            }
             this.Title = page.Title;
         }
 
@@ -88,6 +93,7 @@ namespace WpfAppTFG.Views.Windows
         private void menu_crearPostEvento()
         {
             var crearPostPage = new CreatePostPage(user);
+            crearPostPage.postCreadoEvento += () => pagesContainer.Content = null; ;
             pagesContainer.Navigate(crearPostPage);
         }
 
