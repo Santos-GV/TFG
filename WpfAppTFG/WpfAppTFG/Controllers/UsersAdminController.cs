@@ -11,17 +11,21 @@ namespace WpfAppTFG.Controllers
     public class UsersAdminController
     {
         private readonly UserRepository userRepository;
+        private readonly LogRepository logRepository;
         private readonly UsersAdminPage view;
+        private readonly User userEditor;
         private User? user;
 
         public UsersAdminController()
         {
             userRepository = new UserRepository();
+            logRepository = new LogRepository();
         }
 
-        public UsersAdminController(UsersAdminPage view) : this()
+        public UsersAdminController(UsersAdminPage view, User user) : this()
         {
             this.view = view;
+            this.userEditor = user;
             view.rol.ItemsSource = Enum.GetValues<Rol>();
         }
 
@@ -41,7 +45,10 @@ namespace WpfAppTFG.Controllers
 
         private async Task Delete(User user)
         {
-            await userRepository.Delete(user);
+            var userTask = userRepository.Delete(user);
+            var log = new Log(userEditor.Id, $"Elimina el usuario `{user.Id}`");
+            var logTask = logRepository.Create(log);
+            await Task.WhenAll(userTask, logTask);
         }
 
         public void Buscar()
@@ -78,8 +85,13 @@ Está accicion no se puede deshacer";
             var isParsed = Enum.TryParse(selectedRol, out Rol newRol);
             if (!isParsed) return;
             if (user == null) return;
+            var oldRol = user.Rol;
+            if (oldRol == newRol) return;
             user.Rol = newRol;
-            await userRepository.Update(user);
+            var userTask = userRepository.Update(user);
+            var log = new Log(user.Id, $"Cambia el rol del usuario `{user.Id}` de `{oldRol}` a `{user.Rol}`");
+            var logTask = logRepository.Create(log);
+            await Task.WhenAll(userTask, logTask);
         }
     }
 }

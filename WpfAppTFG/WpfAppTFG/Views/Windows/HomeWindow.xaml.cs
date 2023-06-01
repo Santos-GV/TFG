@@ -57,7 +57,7 @@ namespace WpfAppTFG.Views.Windows
 
         private void MenuBar_administrarUsuarios()
         {
-            var usersAdminPage = new UsersAdminPage();
+            var usersAdminPage = new UsersAdminPage(user);
             pagesContainer.Navigate(usersAdminPage);
         }
 

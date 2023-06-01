@@ -14,10 +14,10 @@ namespace WpfAppTFG.Views.Pages
     {
         private readonly UsersAdminController controller;
 
-        public UsersAdminPage()
+        public UsersAdminPage(User user)
         {
             InitializeComponent();
-            controller = new UsersAdminController(this);
+            controller = new UsersAdminController(this, user);
         }
 
         private void Buscar_Click(object sender, RoutedEventArgs e)
