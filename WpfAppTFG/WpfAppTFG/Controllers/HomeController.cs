@@ -1,7 +1,11 @@
-﻿using System;
+﻿using MongoDB.Driver.Linq;
+using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using WpfAppTFG.Model;
+using WpfAppTFG.Model.Respository;
 using WpfAppTFG.Views.Pages;
 using WpfAppTFG.Views.Windows;
 
@@ -10,13 +14,45 @@ namespace WpfAppTFG.Controllers
     public class HomeController
     {
         private HomeWindow view;
+        private readonly PostRepository postRepository;
+        private DispatcherTimer hiloNotificaciones;
+        private int? comentariosNum;
         private User user;
 
         public HomeController(HomeWindow homeWindow, User user)
         {
             this.view = homeWindow;
             this.user = user;
+            this.postRepository = new PostRepository();
+            CreateNotificationsThread();
             view.menu.SetContext(user);
+        }
+
+        private void CreateNotificationsThread()
+        {
+            hiloNotificaciones = new DispatcherTimer();
+            hiloNotificaciones.Interval = TimeSpan.FromMinutes(2);
+            hiloNotificaciones.Tick += CheckNotifications;
+            hiloNotificaciones.Start();
+        }
+
+        private void CheckNotifications(object? sender, EventArgs e)
+        {
+            var comentariosNum = postRepository.ReadAll()
+                .Where(post => post.IdUsuario.Equals(user.Id))
+                .SelectMany(post => post.Comentarios)
+                .Count();
+            // La primera vez comentariosNum no está inicializado
+            if (this.comentariosNum == null)
+            {
+                this.comentariosNum = comentariosNum;
+                return;
+            }
+            if (this.comentariosNum < comentariosNum)
+            {
+                this.comentariosNum = comentariosNum;
+                MessageBox.Show("¡Tienes nuevos comentarios en tus posts!");
+            }
         }
 
         public void PageNavigated()
@@ -64,6 +100,7 @@ namespace WpfAppTFG.Controllers
 
         public void Salir()
         {
+            hiloNotificaciones.Stop();
             // Cierra la aplicación entera
             // tanto la ventana padre, como esta
             Application.Current.Shutdown();
@@ -71,6 +108,7 @@ namespace WpfAppTFG.Controllers
 
         public void CerrarSesion()
         {
+            hiloNotificaciones.Stop();
             try
             {
                 view.Owner.Visibility = Visibility.Visible;
