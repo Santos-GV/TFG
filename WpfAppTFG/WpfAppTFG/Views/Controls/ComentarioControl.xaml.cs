@@ -9,8 +9,6 @@ namespace WpfAppTFG.Views.Controls
     /// </summary>
     public partial class ComentarioControl : UserControl
     {
-        private readonly Comentario comentario;
-        private readonly User user;
         private readonly ComentarioController controller;
 
         public ComentarioControl()
@@ -21,19 +19,17 @@ namespace WpfAppTFG.Views.Controls
 
         public ComentarioControl(Comentario comentario, User user) : this()
         {
-            this.comentario = comentario;
-            this.user = user;
-            SetContent();
+            SetContent(comentario, user);
         }
 
-        private void SetContent()
+        private void SetContent(Comentario comentario, User user)
         {
             controller.SetContent(comentario, user);
         }
 
         private async void btnEliminar_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            await controller.Eliminar(comentario);
+            await controller.Eliminar();
         }
     }
 }

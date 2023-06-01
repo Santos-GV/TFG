@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfAppTFG.Model;
@@ -11,26 +12,35 @@ namespace WpfAppTFG.Controllers
     {
         private readonly ComentarioRepository comentarioRepository;
         private readonly UserRepository userRepository;
+        private readonly LogRepository logRepository;
         private readonly ComentarioControl view;
+        private Comentario comentario;
+        private User user;
 
         public ComentarioController(ComentarioControl view)
         {
             this.comentarioRepository = new ComentarioRepository();
             this.userRepository = new UserRepository();
+            this.logRepository = new LogRepository();
             this.view = view;
         }
 
-        internal async Task Eliminar(Comentario comentario)
+        public async Task Eliminar()
         {
             var result = MessageBox.Show($"Quiere eliminar el comentario `{comentario.Id}`?", "Peligro", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.No) return;
-            await comentarioRepository.Delete(comentario);
+            var comentarioTask = comentarioRepository.Delete(comentario);
+            var log = new Log(user.Id, $"Elimina el comentario {comentario.Id}");
+            var logTask = logRepository.Create(log);
+            await Task.WhenAll(comentarioTask, logTask);
             MessageBox.Show($"Post `{comentario.Id} eliminado`", "Peligro", MessageBoxButton.OK, MessageBoxImage.Information);
             view.Visibility = Visibility.Collapsed;
         }
 
-        internal void SetContent(Comentario comentario, User user)
+        public void SetContent(Comentario comentario, User user)
         {
+            this.comentario = comentario;
+            this.user = user;
             var commentUser = userRepository.Read(comentario.IdUsuario);
             view.usuario.Text = commentUser?.Name;
             view.contenido.Text = comentario.Contenido;
