@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Navigation;
+using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
-using WpfAppTFG.Views.Controls;
-using WpfAppTFG.Views.Pages;
 
 namespace WpfAppTFG.Views.Windows
 {
@@ -12,7 +11,7 @@ namespace WpfAppTFG.Views.Windows
     /// </summary>
     public partial class HomeWindow : Window
     {
-        private User user;
+        private readonly HomeController controller;
 
         public HomeWindow()
         {
@@ -26,63 +25,37 @@ namespace WpfAppTFG.Views.Windows
         /// <exception cref="ArgumentOutOfRangeException">Rol de usuario inesperado</exception>
         public HomeWindow(User user) : this()
         {
-            this.user = user;
-            menu.SetContext(user);
+            controller = new HomeController(this, user);
         }
 
-        private void pagesContainer_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void pagesContainer_Navigated(object sender, NavigationEventArgs e)
         {
-            var page = pagesContainer.Content as Page;
-            if (page == null)
-            {
-                this.Title = "Home";
-                return;
-            }
-            this.Title = page.Title;
+            controller.PageNavigated();
         }
 
         private void menu_postsEvento()
         {
-            var postsPage = new PostsPage(user);
-            postsPage.abrirPostEvento += OpenPost;
-            pagesContainer.Navigate(postsPage);
-        }
-
-        private void OpenPost(Post post)
-        {
-            var postPage = new PostPage(post, user);
-            postPage.postEliminadoEvento += NavigateHome;
-            pagesContainer.Navigate(postPage);
+            controller.NavigatePosts();
         }
 
         private void MenuBar_administrarUsuarios()
         {
-            var usersAdminPage = new UsersAdminPage(user);
-            pagesContainer.Navigate(usersAdminPage);
+            controller.NavigateAdministrarUsuarios();
         }
 
         private void MenuBar_acercaDeEvento()
         {
-            var acerdaDeWindow = new AcercaDeWindow();
-            acerdaDeWindow.Owner = this;
-            acerdaDeWindow.ShowDialog();
+            controller.NavigateAcercaDe();
         }
 
         private void MenuBar_salirEvento()
         {
-            // Cierra la aplicación entera
-            // tanto la ventana padre, como esta
-            Application.Current.Shutdown();
+            controller.Salir();
         }
 
         private void MenuBar_cerrarSesionEvento()
         {
-            try
-            {
-                Owner.Visibility = Visibility.Visible;
-                this.Close();
-            }
-            catch (InvalidOperationException) { }
+            controller.CerrarSesion();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -93,28 +66,17 @@ namespace WpfAppTFG.Views.Windows
 
         private void menu_crearPostEvento()
         {
-            var crearPostPage = new CreatePostPage(user);
-            crearPostPage.postCreadoEvento += NavigateHome;
-            pagesContainer.Navigate(crearPostPage);
+            controller.NavigateCrearPost();
         }
 
         private void menu_favoritosEvento()
         {
-            var favoritosPage = new FavoritosPage(user);
-            favoritosPage.abrirPostEvento += OpenPost;
-            pagesContainer.Navigate(favoritosPage);
+            controller.NavigateFavoritos();
         }
 
         private void menu_pendientesEvento()
         {
-            var pendientesPage = new PendientesPage(user);
-            pendientesPage.abrirPostEvento += OpenPost;
-            pagesContainer.Navigate(pendientesPage);
-        }
-
-        private void NavigateHome()
-        {
-            pagesContainer.Content = null;
+            controller.NavigatePendientes();
         }
     }
 }
