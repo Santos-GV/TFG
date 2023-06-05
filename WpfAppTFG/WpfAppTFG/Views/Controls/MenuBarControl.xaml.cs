@@ -1,6 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using WpfAppTFG.Controllers;
 using WpfAppTFG.Model;
 
 namespace WpfAppTFG.Views.Controls
@@ -30,23 +30,18 @@ namespace WpfAppTFG.Views.Controls
         public event AyudaEvento ayudaEvento;
         public delegate void AcercaDeEvento();
         public event AcercaDeEvento acercaDeEvento;
-        private User user;
+        private readonly MenuBarController controller;
 
         public MenuBarControl()
         {
             InitializeComponent();
+            controller = new MenuBarController(this);
         }
 
         public void SetContext(User user)
         {
-            this.user = user;
-            administrarUsuarios.Visibility = user.Rol switch
-            {
-                Rol.Regular => Visibility.Collapsed,
-                Rol.Moderador => Visibility.Collapsed,
-                Rol.Administrador => Visibility.Visible,
-                _ => throw new ArgumentOutOfRangeException($"Rol de usuario inesperado `{user.Rol}`")
-            };
+            controller.SetContext(user);
+
         }
 
         private void cerrarSesion_Click(object sender, RoutedEventArgs e)
@@ -97,6 +92,11 @@ namespace WpfAppTFG.Views.Controls
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             misPostEvento();
+        }
+
+        public void UpdateNotificaciones(bool hasNotifications = false)
+        {
+            controller.UpdateNotificaciones(hasNotifications);
         }
     }
 }

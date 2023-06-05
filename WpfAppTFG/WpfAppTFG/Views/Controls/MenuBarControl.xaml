@@ -9,7 +9,7 @@
     <Menu Style="{StaticResource menu}">
         <MenuItem Header="Inicio" Margin="8,0,8,0">
             <MenuItem  Style="{StaticResource menuitem}" Header="Crear post" Click="MenuItem_Click"/>
-            <MenuItem  Style="{StaticResource menuitem}" Header="Mis posts" Click="MenuItem_Click_1"/>
+            <MenuItem x:Name="miMisPosts" Style="{StaticResource menuitem}" Header="Mis posts" Click="MenuItem_Click_1"/>
             <Separator/>
             <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
             <MenuItem Style="{StaticResource menuitem}" Header="Salir" Click="salir_Click"/>

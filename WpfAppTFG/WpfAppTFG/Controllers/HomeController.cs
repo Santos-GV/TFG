@@ -51,6 +51,7 @@ namespace WpfAppTFG.Controllers
             if (this.comentariosNum < comentariosNum)
             {
                 this.comentariosNum = comentariosNum;
+                view.menu.UpdateNotificaciones(true);
                 MessageBox.Show("¡Tienes nuevos comentarios en tus posts!");
             }
         }
@@ -143,6 +144,7 @@ namespace WpfAppTFG.Controllers
             var misPostsPage = new MisPostsPage(user);
             misPostsPage.abrirPostEvento += OpenPost;
             misPostsPage.crearPostEvento += NavigateCrearPost;
+            view.menu.UpdateNotificaciones(); // Se quita el inficador de notificaciones pendientes
             view.pagesContainer.Navigate(misPostsPage);
         }
     }
