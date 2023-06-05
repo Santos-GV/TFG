@@ -15,7 +15,7 @@
             </ResourceDictionary>
         </Grid.Resources>
         <Grid.InputBindings>
-            <KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource AtajoGuardar}"/>
+            <KeyBinding Key="Return" Modifiers="Ctrl" Command="{StaticResource AtajoGuardar}"/>
         </Grid.InputBindings>
         <Grid.CommandBindings>
             <CommandBinding Command="{StaticResource AtajoGuardar}" Executed="AtajoGuardar"/>
