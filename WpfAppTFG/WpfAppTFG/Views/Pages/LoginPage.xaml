@@ -21,14 +21,14 @@
         <StackPanel.CommandBindings>
             <CommandBinding Command="{StaticResource Login}" Executed="login_Click"/>
         </StackPanel.CommandBindings>
-        <TextBlock x:Name="info" Foreground="{DynamicResource danger}" FontSize="16" Margin="55,16,16,16"/>
+        <TextBlock x:Name="info" Style="{StaticResource infotext}"/>
         <TextBlock Margin="55,16,8,8" >Usuario</TextBlock>
         <TextBox x:Name="userName" Style="{StaticResource login-field}" Margin="8,8,8,16"/>
         <TextBlock Margin="55,16,8,8">Contraseña</TextBlock>
         <PasswordBox x:Name="psswd" Style="{StaticResource psswd}" Margin="8,8,8,16"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="16">
-            <Button x:Name="login" Style="{StaticResource button}" Background="{StaticResource secondary}" Margin="8,8,8,8" Click="login_Click">Login</Button>
-            <Button x:Name="register" Style="{StaticResource button}" Margin="8,8,8,8" Click="register_Click">Registrarse</Button>
+            <Button x:Name="login" Style="{StaticResource button}" Background="{StaticResource secondary}" Click="login_Click">Login</Button>
+            <Button x:Name="register" Style="{StaticResource button}" Click="register_Click">Registrarse</Button>
         </StackPanel>
     </StackPanel>
 </Page>
