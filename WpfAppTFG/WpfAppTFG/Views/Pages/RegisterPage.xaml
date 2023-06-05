@@ -9,16 +9,27 @@
       d:DesignHeight="450" d:DesignWidth="400"
       Title="Registro">
     <StackPanel Style="{StaticResource bd-container}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="350" Width="350">
-        <TextBlock x:Name="info" Foreground="{DynamicResource danger}" FontSize="16" Margin="55,16,16,16"/>
+        <StackPanel.Resources>
+            <ResourceDictionary>
+                <RoutedUICommand x:Key="AtajoRegistrarse"/>
+            </ResourceDictionary>
+        </StackPanel.Resources>
+        <StackPanel.InputBindings>
+            <KeyBinding Key="Return" Modifiers="Ctrl" Command="{StaticResource AtajoRegistrarse}"/>
+        </StackPanel.InputBindings>
+        <StackPanel.CommandBindings>
+            <CommandBinding Command="{StaticResource AtajoRegistrarse}" Executed="AtajoRegistrarse"/>
+        </StackPanel.CommandBindings>
+        <TextBlock x:Name="info" Style="{StaticResource infotext}" Margin="55,16,16,16"/>
         <TextBlock Margin="55,8,8,8">Usuario</TextBlock>
-        <TextBox x:Name="user" Style="{StaticResource login-field}" Margin="8,8,8,8"/>
+        <TextBox x:Name="user" Style="{StaticResource login-field}"/>
         <TextBlock Margin="55,8,8,8">Contraseña</TextBlock>
-        <PasswordBox x:Name="psswd1" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <PasswordBox x:Name="psswd1" Style="{StaticResource psswd}"/>
         <TextBlock Margin="55,8,8,8">Repita la contraseña</TextBlock>
-        <PasswordBox x:Name="psswd2" Style="{StaticResource psswd}" Margin="8,8,8,8"/>
+        <PasswordBox x:Name="psswd2" Style="{StaticResource psswd}"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="8,16,8,8">
-            <Button x:Name="login" Style="{StaticResource button}" Margin="8,8,8,8" Click="registrase_Click">Registrarse</Button>
-            <Button x:Name="atras" Style="{StaticResource button}" Margin="8,8,8,8" Click="atras_Click">Atras</Button>
+            <Button x:Name="login" Style="{StaticResource button}" Background="{StaticResource secondary}" Click="registrase_Click">Registrarse</Button>
+            <Button x:Name="atras" Style="{StaticResource button}" Click="atras_Click">Atras</Button>
         </StackPanel>
     </StackPanel>
 </Page>

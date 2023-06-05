@@ -31,5 +31,10 @@ namespace WpfAppTFG.Views.Pages
         {
             controller.NavigateLogin();
         }
+
+        private async void AtajoRegistrarse(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            await controller.Register();
+        }
     }
 }
