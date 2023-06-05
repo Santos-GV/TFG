@@ -20,7 +20,7 @@
                 <TextBlock Style="{StaticResource text-block}">Nombre del usuario</TextBlock>
             </TextBlock.ToolTip>
         </TextBlock>
-        <Button x:Name="btnEliminar" Grid.Column="1" Grid.Row="0" Style="{StaticResource button-danger}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="8" Click="btnEliminar_Click">Eliminar</Button>
+        <Button x:Name="btnEliminar" Grid.Column="1" Grid.Row="0" Style="{StaticResource button-danger}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btnEliminar_Click">Eliminar</Button>
         <TextBlock x:Name="contenido" Style="{StaticResource text-block}" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
             <TextBlock.ToolTip>
                 <TextBlock Style="{StaticResource text-block}">Contenido del comentario</TextBlock>
