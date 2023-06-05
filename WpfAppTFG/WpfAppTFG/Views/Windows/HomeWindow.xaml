@@ -13,7 +13,49 @@
         MinWidth="640"
         MinHeight="480"
         Closing="Window_Closing">
+    <Window.Resources>
+        <ResourceDictionary>
+            <RoutedUICommand x:Key="AtajoCrearPost"/>
+            <RoutedUICommand x:Key="AtajoMisPosts"/>
+            <RoutedUICommand x:Key="AtajoCerrarSesion"/>
+            <RoutedUICommand x:Key="AtajoSalir"/>
+            
+            <RoutedUICommand x:Key="AtajoPosts"/>
+            <RoutedUICommand x:Key="AtajoFavoritos"/>
+            <RoutedUICommand x:Key="AtajoPendientes"/>
+
+            <RoutedUICommand x:Key="AtajoAyuda"/>
+            <RoutedUICommand x:Key="AtajoAcercaDe"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="{StaticResource AtajoCrearPost}"/>
+        <KeyBinding Key="M" Modifiers="Ctrl" Command="{StaticResource AtajoMisPosts}"/>
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{StaticResource AtajoCerrarSesion}"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="{StaticResource AtajoSalir}"/>
+
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="{StaticResource AtajoPosts}"/>
+        <KeyBinding Key="F" Modifiers="Ctrl" Command="{StaticResource AtajoFavoritos}"/>
+        <KeyBinding Key="E" Modifiers="Ctrl" Command="{StaticResource AtajoPendientes}"/>
+
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{StaticResource AtajoAyuda}"/>
+        <KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource AtajoAcercaDe}"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource AtajoCrearPost}" Executed="AtajoCrearPost"/>
+        <CommandBinding Command="{StaticResource AtajoMisPosts}" Executed="AtajoMisPosts"/>
+        <CommandBinding Command="{StaticResource AtajoCerrarSesion}" Executed="AtajoCerrarSesion"/>
+        <CommandBinding Command="{StaticResource AtajoSalir}" Executed="AtajoSalir"/>
+
+        <CommandBinding Command="{StaticResource AtajoPosts}" Executed="AtajoPosts"/>
+        <CommandBinding Command="{StaticResource AtajoFavoritos}" Executed="AtajoFavoritos"/>
+        <CommandBinding Command="{StaticResource AtajoPendientes}" Executed="AtajoPendientes"/>
+
+        <CommandBinding Command="{StaticResource AtajoAyuda}" Executed="AtajoAyuda"/>
+        <CommandBinding Command="{StaticResource AtajoAcercaDe}" Executed="AtajoAcercaDe"/>
+    </Window.CommandBindings>
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>

@@ -8,23 +8,23 @@
              d:DesignHeight="24" d:DesignWidth="800">
     <Menu Style="{StaticResource menu}">
         <MenuItem Header="Inicio" Margin="8,0,8,0">
-            <MenuItem  Style="{StaticResource menuitem}" Header="Crear post" Click="MenuItem_Click"/>
-            <MenuItem x:Name="miMisPosts" Style="{StaticResource menuitem}" Header="Mis posts" Click="MenuItem_Click_1"/>
+            <MenuItem  Style="{StaticResource menuitem}" Header="Crear post" InputGestureText="Ctrl+N" Click="MenuItem_Click"/>
+            <MenuItem x:Name="miMisPosts" Style="{StaticResource menuitem}" Header="Mis posts" InputGestureText="Ctrl+M" Click="MenuItem_Click_1"/>
             <Separator/>
-            <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" Click="cerrarSesion_Click"/>
-            <MenuItem Style="{StaticResource menuitem}" Header="Salir" Click="salir_Click"/>
+            <MenuItem  Style="{StaticResource menuitem}" Header="Cerrar sesión" InputGestureText="Ctrl+E" Click="cerrarSesion_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Salir" InputGestureText="Ctrl+S" Click="salir_Click"/>
         </MenuItem>
         <MenuItem x:Name="ver" Header="Ver" Margin="8,0,8,0">
-            <MenuItem Style="{StaticResource menuitem}" Header="Posts" Click="Posts_Click"/>
-            <MenuItem Style="{StaticResource menuitem}" Header="Favoritos" Click="Favoritos_Click"/>
-            <MenuItem Style="{StaticResource menuitem}" Header="Pendientes" Click="Pendientes_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Posts" InputGestureText="Ctrl+P" Click="Posts_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Favoritos" InputGestureText="Ctrl+F" Click="Favoritos_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Pendientes" InputGestureText="Ctrl+E" Click="Pendientes_Click"/>
             <Separator/>
             <MenuItem x:Name="administrarUsuarios" Visibility="Collapsed" Style="{StaticResource menuitem}" Header="Administrar usuarios" Click="administrarUsuarios_Click"/>
         </MenuItem>
         <MenuItem Header="Ayuda" Margin="8,0,8,0">
-            <MenuItem Style="{StaticResource menuitem}" Header="Ayuda" Click="ayuda_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Ayuda" InputGestureText="Ctrl+H" Click="ayuda_Click"/>
             <Separator/>
-            <MenuItem Style="{StaticResource menuitem}" Header="Acerca de" Click="acerdaDe_Click"/>
+            <MenuItem Style="{StaticResource menuitem}" Header="Acerca de" InputGestureText="Ctrl+A" Click="acerdaDe_Click"/>
         </MenuItem>
     </Menu>
 </UserControl>

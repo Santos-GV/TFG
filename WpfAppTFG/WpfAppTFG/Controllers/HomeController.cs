@@ -51,7 +51,7 @@ namespace WpfAppTFG.Controllers
             if (this.comentariosNum < comentariosNum)
             {
                 this.comentariosNum = comentariosNum;
-                view.menu.UpdateNotificaciones(true);
+                view.menu.UpdateNotificaciones(true); // Añade indicador de notificaciones en el menu
                 MessageBox.Show("¡Tienes nuevos comentarios en tus posts!");
             }
         }

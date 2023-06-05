@@ -83,5 +83,45 @@ namespace WpfAppTFG.Views.Windows
         {
             controller.NavigateMisPosts();
         }
+
+        private void AtajoCrearPost(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigateCrearPost();
+        }
+        private void AtajoMisPosts(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigateMisPosts();
+        }
+
+        private void AtajoCerrarSesion(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.CerrarSesion();
+        }
+
+        private void AtajoSalir(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.Salir();
+        }
+
+        private void AtajoPosts(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigatePosts();
+        }
+        private void AtajoFavoritos(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigateFavoritos();
+        }
+        private void AtajoPendientes(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigatePendientes();
+        }
+        private void AtajoAyuda(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            throw new NotImplementedException("TODO: Añadir venta de Acerca de");
+        }
+        private void AtajoAcercaDe(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            controller.NavigateAcercaDe();
+        }
     }
 }
