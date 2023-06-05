@@ -11,8 +11,8 @@
         Title="Acerca de" Height="600" Width="480">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Style="{StaticResource textBlockMainAyuda}">ForoSaber</TextBlock>
-        <TextBlock Style="{StaticResource textBlockAyuda}">Conecta, aprende, crece</TextBlock>
+        <TextBlock Style="{StaticResource textBlockAcercade}">Conecta, aprende, crece</TextBlock>
         <Image Style="{StaticResource Logo}"/>
-        <TextBlock Style="{StaticResource textBlockAyuda}">Aprende algo nuevo cada día</TextBlock>
+        <TextBlock Style="{StaticResource textBlockAcercade}">Aprende algo nuevo cada día</TextBlock>
     </StackPanel>
 </Window>

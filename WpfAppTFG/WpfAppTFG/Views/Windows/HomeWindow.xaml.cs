@@ -117,7 +117,7 @@ namespace WpfAppTFG.Views.Windows
         }
         private void AtajoAyuda(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {
-            throw new NotImplementedException("TODO: Añadir venta de Acerca de");
+            controller.NavigateAyuda();
         }
         private void AtajoAcercaDe(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
         {

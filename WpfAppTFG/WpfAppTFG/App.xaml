@@ -64,11 +64,24 @@
                 <Setter Property="Margin" Value="16"/>
             </Style>
 
-            <Style x:Key="textBlockAyuda" TargetType="TextBlock">
+            <Style x:Key="textBlockAcercade" TargetType="TextBlock">
                 <Setter Property="TextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="FontStyle" Value="Italic"/>
                 <Setter Property="Margin" Value="16"/>
+            </Style>
+
+            <Style x:Key="textBlockAyuda" TargetType="TextBlock">
+                <Setter Property="Margin" Value="0,10,0,0"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+
+            <Style x:Key="textBlockAyudaContenido" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Padding" Value="16,8,8,8"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
             </Style>
 
             <Style x:Key="login-field" TargetType="TextBox">

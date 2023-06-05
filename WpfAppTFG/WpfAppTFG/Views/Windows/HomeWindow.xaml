@@ -10,8 +10,7 @@
         Icon="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico"
         Background="{DynamicResource dark}"
         Title="Home" Height="450" Width="800"
-        MinWidth="640"
-        MinHeight="480"
+        MinWidth="360" MinHeight="480"
         Closing="Window_Closing">
     <Window.Resources>
         <ResourceDictionary>

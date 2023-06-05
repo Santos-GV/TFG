@@ -147,5 +147,12 @@ namespace WpfAppTFG.Controllers
             view.menu.UpdateNotificaciones(); // Se quita el inficador de notificaciones pendientes
             view.pagesContainer.Navigate(misPostsPage);
         }
+
+        internal void NavigateAyuda()
+        {
+            var ayudaWindow = new AyudaWindow();
+            ayudaWindow.Owner = view;
+            ayudaWindow.ShowDialog();
+        }
     }
 }
