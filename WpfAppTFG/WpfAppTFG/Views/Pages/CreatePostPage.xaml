@@ -36,7 +36,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource textBlock}" Grid.Row="0" Margin="8">Contenido</TextBlock>
-            <TextBox x:Name="txtContenido" Style="{StaticResource text}" Grid.Row="1" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"></TextBox>
+            <TextBox x:Name="txtContenido" Style="{StaticResource text}" Grid.Row="1" VerticalContentAlignment="Top" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"></TextBox>
         </Grid>
         <StackPanel Margin="8" Grid.Row="2">
             <WrapPanel Orientation="Horizontal" Margin="8">
