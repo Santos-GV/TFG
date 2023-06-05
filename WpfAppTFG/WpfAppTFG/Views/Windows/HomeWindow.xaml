@@ -23,6 +23,7 @@
                         salirEvento="MenuBar_salirEvento"
                         cerrarSesionEvento="MenuBar_cerrarSesionEvento"
                         crearPostEvento="menu_crearPostEvento"
+                        misPostEvento="menu_misPostEvento"
                         postsEvento="menu_postsEvento"
                         favoritosEvento="menu_favoritosEvento"
                         pendientesEvento="menu_pendientesEvento"

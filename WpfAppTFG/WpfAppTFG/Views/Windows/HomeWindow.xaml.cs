@@ -78,5 +78,10 @@ namespace WpfAppTFG.Views.Windows
         {
             controller.NavigatePendientes();
         }
+
+        private void menu_misPostEvento()
+        {
+            controller.NavigateMisPosts();
+        }
     }
 }

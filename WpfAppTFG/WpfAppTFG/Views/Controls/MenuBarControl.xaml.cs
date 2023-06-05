@@ -12,6 +12,8 @@ namespace WpfAppTFG.Views.Controls
     {
         public delegate void CrearPostEvento();
         public event CrearPostEvento crearPostEvento;
+        public delegate void MisPostEvento();
+        public event MisPostEvento misPostEvento;
         public delegate void CerrarSesionEvento();
         public event CerrarSesionEvento cerrarSesionEvento;
         public delegate void SalirEvento();
@@ -90,6 +92,11 @@ namespace WpfAppTFG.Views.Controls
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             crearPostEvento();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            misPostEvento();
         }
     }
 }

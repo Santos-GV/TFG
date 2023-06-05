@@ -137,5 +137,13 @@ namespace WpfAppTFG.Controllers
             pendientesPage.abrirPostEvento += OpenPost;
             view.pagesContainer.Navigate(pendientesPage);
         }
+
+        internal void NavigateMisPosts()
+        {
+            var misPostsPage = new MisPostsPage(user);
+            misPostsPage.abrirPostEvento += OpenPost;
+            misPostsPage.crearPostEvento += NavigateCrearPost;
+            view.pagesContainer.Navigate(misPostsPage);
+        }
     }
 }

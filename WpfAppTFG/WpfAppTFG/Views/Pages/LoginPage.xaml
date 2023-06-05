@@ -27,7 +27,7 @@
         <TextBlock Margin="55,16,8,8">Contraseña</TextBlock>
         <PasswordBox x:Name="psswd" Style="{StaticResource psswd}" Margin="8,8,8,16"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="16">
-            <Button x:Name="login" Style="{StaticResource button}" Margin="8,8,8,8" Click="login_Click">Login</Button>
+            <Button x:Name="login" Style="{StaticResource button}" Background="{StaticResource secondary}" Margin="8,8,8,8" Click="login_Click">Login</Button>
             <Button x:Name="register" Style="{StaticResource button}" Margin="8,8,8,8" Click="register_Click">Registrarse</Button>
         </StackPanel>
     </StackPanel>
