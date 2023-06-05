@@ -10,9 +10,9 @@
         Background="{DynamicResource light}"
         Title="Acerca de" Height="600" Width="480">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock TextAlignment="Center" FontSize="32" FontWeight="Bold" Margin="16">ForoSaber</TextBlock>
-        <TextBlock TextAlignment="Center" FontSize="24" FontStyle="Italic" Margin="16">Conecta, aprende, crece</TextBlock>
-        <Image Source="pack://application:,,,/WpfAppTFG;component/Resources/logotipo.ico" Height="256" Margin="16"/>
-        <TextBlock TextAlignment="Center" FontSize="24" FontStyle="Italic" Margin="16">Aprende algo nuevo cada día</TextBlock>
+        <TextBlock Style="{StaticResource textBlockMainAyuda}">ForoSaber</TextBlock>
+        <TextBlock Style="{StaticResource textBlockAyuda}">Conecta, aprende, crece</TextBlock>
+        <Image Style="{StaticResource Logo}"/>
+        <TextBlock Style="{StaticResource textBlockAyuda}">Aprende algo nuevo cada día</TextBlock>
     </StackPanel>
 </Window>
