@@ -95,6 +95,9 @@
             <Style x:Key="menuitem" TargetType="MenuItem">
                 <Setter Property="Foreground" Value="{DynamicResource dark}"/>
             </Style>
+            <Style x:Key="MenuItemContainer" TargetType="MenuItem">
+                <Setter Property="Margin" Value="8,0,8,0"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
