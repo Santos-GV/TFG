@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfAppTFG.Controllers;
@@ -14,45 +15,39 @@ namespace WpfAppTFG.Views.Pages
         public delegate void PostCreadoEvento();
         public event PostCreadoEvento postCreadoEvento;
         private CreatePostController? controller;
-        private List<string> tags;
 
         public CreatePostPage()
         {
             InitializeComponent();
-            tags = new List<string>();
         }
 
         public CreatePostPage(User user) : this()
         {
-            controller = new CreatePostController(user);
+            controller = new CreatePostController(user, this);
         }
 
         private void btnAñadir_Click(object sender, RoutedEventArgs e)
         {
-            var etiqueta = txtEtiqueta.Text;
-            txtEtiqueta.Text = string.Empty;
+            if (controller is null) return;
+            controller.AddEtiqueta();
+        }
 
-            var control = new TextBlock();
-            control.Text = etiqueta;
-            control.Margin = new Thickness(8);
-            control.Style = (Style)Resources["text-block"];
+        private async Task Guardar()
+        {
+            if (controller is null) return;
+            await controller.CreatePost();
+            postCreadoEvento();
 
-            tags.Add(etiqueta);
-            stpEtiquetas.Children.Add(control);
         }
 
         private async void btnGuardar_Click(object sender, RoutedEventArgs e)
         {
-            if (controller is null) return;
-            var title = txtTitulo.Text;
-            var content = txtContenido.Text;
-            await controller.CreatePost(title, content, tags);
-            // Limpia el contenido depues de crear el post
-            txtTitulo.Text = string.Empty;
-            txtContenido.Text = string.Empty;
-            tags.Clear();
-            stpEtiquetas.Children.Clear();
-            postCreadoEvento();
+            await Guardar();
+        }
+
+        private async void AtajoGuardar(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            await Guardar();
         }
     }
 }

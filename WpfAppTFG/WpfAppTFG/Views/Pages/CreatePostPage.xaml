@@ -9,6 +9,17 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Crear post">
     <Grid Background="{DynamicResource white}">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <RoutedUICommand x:Key="AtajoGuardar"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+        <Grid.InputBindings>
+            <KeyBinding Key="A" Modifiers="Ctrl" Command="{StaticResource AtajoGuardar}"/>
+        </Grid.InputBindings>
+        <Grid.CommandBindings>
+            <CommandBinding Command="{StaticResource AtajoGuardar}" Executed="AtajoGuardar"/>
+        </Grid.CommandBindings>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -31,10 +42,10 @@
             <WrapPanel Orientation="Horizontal" Margin="8">
                 <TextBlock Style="{StaticResource textBlock}" Margin="8">Etiquetas</TextBlock>
                 <TextBox x:Name="txtEtiqueta" Style="{StaticResource text}" Width="140" Margin="8"></TextBox>
-                <Button x:Name="btnAñadir" Style="{StaticResource button}" Margin="8" Click="btnAñadir_Click">Añadir</Button>
+                <Button x:Name="btnAñadir" Style="{StaticResource button}" Click="btnAñadir_Click">Añadir</Button>
             </WrapPanel>
             <WrapPanel x:Name="stpEtiquetas"/>
         </StackPanel>
-        <Button x:Name="btnGuardar" Grid.Row="3" Style="{StaticResource button}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="8" Click="btnGuardar_Click">Guardar</Button>
+        <Button x:Name="btnGuardar" Grid.Row="3" Style="{StaticResource button}" Background="{StaticResource secondary}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnGuardar_Click">Guardar</Button>
     </Grid>
 </Page>
