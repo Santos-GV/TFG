@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              MouseDoubleClick="UserControl_MouseDoubleClick"
              d:DesignHeight="150" d:DesignWidth="200">
-    <Border Background="{StaticResource dark}" Padding="5" CornerRadius="12" BorderThickness="2">
+    <Border Style="{StaticResource border}">
         <Border Background="{StaticResource light}" CornerRadius="6">
             <TextBlock x:Name="title" Style="{StaticResource textBlock}" TextWrapping="Wrap" Margin="8">
                 <TextBlock.ContextMenu>
