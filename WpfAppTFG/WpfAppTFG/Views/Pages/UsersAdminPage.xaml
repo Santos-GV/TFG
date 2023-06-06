@@ -12,13 +12,13 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Label x:Name="info" FontSize="24" Height="24" Width="240" Margin="16"></Label>
             <TextBlock Style="{StaticResource textBlock}" Margin="16">Nombre</TextBlock>
             <TextBox x:Name="nombreBusqueda" Style="{StaticResource login-field}" Margin="16"></TextBox>
             <Button Style="{StaticResource button}" HorizontalAlignment="Left" Margin="16,16,0,0" Click="Buscar_Click">Buscar</Button>
         </StackPanel>
-        <StackPanel x:Name="userInfo" Grid.Column="1">
+        <StackPanel x:Name="userInfo" Grid.Column="1" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16">Nombre</TextBlock>
             <TextBlock x:Name="nombre" Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16"></TextBlock>
             <TextBlock Style="{StaticResource textBlock}" TextAlignment="Center" Margin="16">Rol</TextBlock>
