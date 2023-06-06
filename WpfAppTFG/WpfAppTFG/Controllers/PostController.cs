@@ -73,8 +73,7 @@ namespace WpfAppTFG.Controllers
             {
                 var control = new TextBlock();
                 control.Text = etiqueta;
-                control.Margin = new Thickness(8);
-                control.Style = (Style)view.Resources["text-block"];
+                control.Style = (Style)Application.Current.Resources["etiqueta"];
 
                 view.stpEtiquetas.Children.Add(control);
             }

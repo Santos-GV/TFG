@@ -8,6 +8,7 @@ using WpfAppTFG.Model;
 using WpfAppTFG.Model.Respository;
 using WpfAppTFG.Views.Controls;
 using WpfAppTFG.Views.Pages;
+using System.Windows.Media;
 
 namespace WpfAppTFG.Controllers
 {
@@ -103,7 +104,7 @@ namespace WpfAppTFG.Controllers
             var control = new TextBlock();
             control.Text = etiqueta;
             control.Margin = new Thickness(8);
-            control.Style = (Style)view.Resources["text-block"];
+            control.Style = (Style)Application.Current.Resources["etiqueta"];
 
             tags.Add(etiqueta);
             view.stpEtiquetas.Children.Add(control);

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppTFG", "WpfAppTFG\WpfAppTFG.csproj", "{74799B4A-AD90-4839-B0CA-5A363C06489F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppTFG", "WpfAppTFG\WpfAppTFG.csproj", "{74799B4A-AD90-4839-B0CA-5A363C06489F}"
 EndProject
 Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "Documentation", "Documentation\Documentation.shfbproj", "{D00F2414-A619-41AF-AB2E-90B1D22431E1}"
 EndProject
