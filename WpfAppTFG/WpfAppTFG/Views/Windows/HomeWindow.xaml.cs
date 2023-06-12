@@ -123,5 +123,10 @@ namespace WpfAppTFG.Views.Windows
         {
             controller.NavigateAcercaDe();
         }
+
+        private void menu_ayudaEvento()
+        {
+            controller.NavigateAyuda();
+        }
     }
 }

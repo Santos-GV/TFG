@@ -68,6 +68,7 @@
                         favoritosEvento="menu_favoritosEvento"
                         pendientesEvento="menu_pendientesEvento"
                         administrarUsuariosEvento="MenuBar_administrarUsuarios"
+                        ayudaEvento="menu_ayudaEvento"
                         acercaDeEvento="MenuBar_acercaDeEvento"/>
         </Expander>
         <Image Style="{StaticResource Logo}" Grid.Row="1"/>
