@@ -60,6 +60,7 @@ namespace WpfAppTFG.Controllers
                 view.info.Content = "El usuario no existe";
                 return;
             }
+            view.info.Content = string.Empty;
             view.nombre.Text = user.Name;
             view.rol.SelectedItem = user.Rol;
         }
