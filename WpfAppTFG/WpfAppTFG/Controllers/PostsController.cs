@@ -67,18 +67,29 @@ namespace WpfAppTFG.Controllers
 
         public void LoadNextPosts()
         {
-            if (postsEnumerator.MoveNext())
+            int count = 0;
+            // Si no se encuentran posts con las etiquetas filtradas, se pasa al siguiente bloque del Enumerator
+            while (count != -1 && count == 0)
             {
-                var currentposts = postsEnumerator.Current.Value;
-                foreach (var post in currentposts)
+                count = 0;
+                if (postsEnumerator.MoveNext())
                 {
-                    var etiquetas = post.Etiquetas.AsEnumerable();
-                    if (!ContainsAllTags(etiquetas)) continue;
-                    var control = new PostsControl(post);
-                    control.clickEvento += () => view.abrirPost(post);
-                    control.clickFavoritosEvento += async () => await addFavoritos(post);
-                    control.clickPendientesEvento += async () => await addPendientes(post);
-                    view.postsContainer.Children.Add(control);
+                    var currentposts = postsEnumerator.Current.Value;
+                    foreach (var post in currentposts)
+                    {
+                        var etiquetas = post.Etiquetas.AsEnumerable();
+                        if (!ContainsAllTags(etiquetas)) continue;
+                        var control = new PostsControl(post);
+                        control.clickEvento += () => view.abrirPost(post);
+                        control.clickFavoritosEvento += async () => await addFavoritos(post);
+                        control.clickPendientesEvento += async () => await addPendientes(post);
+                        view.postsContainer.Children.Add(control);
+                        count++;
+                    }
+                }
+                else
+                {
+                    count = -1;
                 }
             }
         }
@@ -112,8 +123,8 @@ namespace WpfAppTFG.Controllers
 
         public async Task Filtrar()
         {
-            await LoadPosts();
             view.postsContainer.Children.Clear();
+            await LoadPosts();
             view.expFiltrar.IsExpanded = false;
         }
     }
